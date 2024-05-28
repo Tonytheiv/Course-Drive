@@ -1,0 +1,492 @@
+\documentclass[10pt]{article}
+
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{fullwidth}
+\usepackage{graphicx}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage[hidelinks, urlcolor=blue, linkcolor=blue, colorlinks=true]{hyperref} 
+
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+\newcommand{\bcent}{\begin{center}}
+\newcommand{\ecent}{\end{center}}
+\newcommand{\tb}{\textbf}
+\newcommand{\noin}{\noindent}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\bitem}{\begin{itemize}}
+\newcommand{\eitem}{\end{itemize}}
+\def\boxx#1{
+    \framebox{
+    \begin{tabular}{c}
+    \\[-1pt]
+    #1 \\
+    \\[-1pt]
+    \end{tabular}
+    }
+}
+
+%%% This command makes a framed box of a chosen height.
+\newcommand{\makenonemptybox}[2]{%
+\par\nobreak\vspace{\ht\strutbox}\noindent
+\setlength{\fboxrule}{0pt} % set this to 0pt to make invisible
+\fbox{%
+\parbox[c][#1][t]{\dimexpr\linewidth-2\fboxsep}{
+  \hrule width \hsize height 0pt
+  #2
+ }%
+}%
+}
+\makeatother    
+
+
+\begin{document}
+
+{\bcent\fontfamily{cmss}\selectfont
+\begin{tabular}{c}
+\textbf{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\textbf{{\color{red} Due}: 11:59pm EST, Sunday January 29, 2022}\\\hline
+\end{tabular}\ecent
+}
+
+{\fontfamily{cmss}\selectfont
+\large\bcent\tb{}\\
+\tb{}\\
+\vspace{0pt}
+%\tb{Term Test 1}\\
+
+\tb{\Large MAT185 Linear Algebra}\\
+
+\tb{Assignment 1}
+\ecent}
+
+
+
+\noin{\fontfamily{cmss}\selectfont\tb{\large Instructions:}} \\ %% Fairly standard and designed to save time; however, tweak as necessary.
+
+\noindent Please read the {\bf MAT185 Assignment Policies \& FAQ} document for details on submission policies, collaboration rules and academic integrity, and general instructions. 
+
+\benum
+
+
+\item {\bf Submissions are only accepted by} \href{https://www.gradescope.ca}{Gradescope}. Do not send anything by email.  Late submissions are not accepted under any circumstance. Remember you can resubmit anytime before the deadline. 
+
+\item  {\bf Submit solutions using only this template pdf}.  Your submission should be a single pdf with your full written solutions for each question. If your solution is not written using this template pdf (scanned print or digital) then your submission will not be assessed. Organize your work neatly in the space provided.  Do not submit rough work. 
+
+\item  {\bf Show your work and justify your steps} on every question but do not include extraneous information.  Put your final answer in the box provided, if necessary.  We recommend you write draft solutions on separate pages and afterwards write your polished solutions here on this template.
+
+\item  {\bf You must fill out and sign the academic integrity statement below}; otherwise, you will receive zero for this assignment. 
+
+
+\eenum
+
+\vspace{30pt}
+
+
+\noin{\fontfamily{cmss}\selectfont\tb{\large Academic Integrity Statement:}} \\
+
+%%% Student information
+
+% Student 1
+\fbox{
+\begin{minipage}{\textwidth}
+{
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily Full Name: Qiao Wang}
+
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily Student number: 1009027447}
+
+\vspace{0.1in}
+}
+\end{minipage}
+}
+
+\vspace*{0.1in}
+
+% Student 2
+\fbox{
+\begin{minipage}{\textwidth}
+{
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily Full Name: Justin Lim}
+
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily Student number: 1008879055}
+
+\vspace{0.1in}
+}
+\end{minipage}
+}
+~
+
+I confirm that:
+
+\begin{itemize} 
+	\item I have read and followed the policies described in the document {\bf MAT185 Assignment Policies \& FAQ}.
+	\item In particular, I have read and understand the rules for collaboration, and permitted resources on assignments as described in subsection II of the the aforementioned document. I have not violated these rules while completing and writing this assignment. 
+	\item I understand the consequences of violating the University's academic integrity policies as outlined in the \href{http://www.governingcouncil.utoronto.ca/policies/behaveac.htm}{Code of Behaviour on Academic Matters}. I have not violated them while completing and writing this assignment.
+\end{itemize}
+By signing this document, I agree that the statements above are true. 
+
+% You should sign this PDF after compiling. Do not write your signature using LaTeX.
+\vspace{0.2in}
+{\large 
+\makebox[\textwidth]{\sffamily Signatures: 1)\enspace\hrulefill} 
+
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily \hspace*{20mm} 2)\enspace\hrulefill} 
+
+}
+
+\vfill
+
+
+\pagebreak
+
+%%% Questions
+
+\noin{\bf 1.}  Let $V=\{ (x_1, x_2) \mid  x_1, x_2>0, \mbox{ and } x_1+x_2=1\}$.  Is $V$ a real vector space with respect to the usual entry-wise vector addition and scalar multiplication?  Why or why not?
+
+
+%Question
+
+{
+	\vspace*{-10pt}
+	%%% Do not change the height of this box. Your work must fit inside it.
+	
+	\makenonemptybox{550pt}{
+	%%% Your work goes here! 
+ $\;$
+ \begin{align*}
+ \end{align*}
+ \begin{equation} 
+ \text{Let } \tilde{v}=(x_{1,1},\;x_{2,1}),\;\tilde{w}=(x_{1,2},\;x_{2,2})\;\forall\; x_{1,1}, \;x_{1,2}, \;x_{2,1}, \;x_{2,2} \in \mathbb R
+ \end{equation}
+
+ \begin{equation} 
+ \begin{cases} \phantom{-} x_{1,1} + x_{2,1} = 1 \\ \phantom{-}  x_{1,2} + x_{2,2} = 1 \end{cases}\;\;\;\;\;\big[\text{By the definition of }V\big]
+ \end{equation}
+ \begin{equation} 
+ \tilde{v}+\tilde{w}=( x_{1,1}+ x_{1,2},\; x_{2,1}+ x_{2,2} ) = (1,\; 1) \;\;\;\;\;\big[\text{By the definition of }V\big]
+ \end{equation}
+  \begin{equation} 
+ = x_{1,1}+ x_{1,2} + x_{2,1}+ x_{2,2}
+ \end{equation}
+ \begin{equation} 
+ x_{1,1}+ x_{2,1} + x_{1,2}+ x_{2,2} = 1+1\neq1 \implies \big[\text{[AI], additive closure fails}\big]
+ \end{equation}
+ \begin{equation}
+ \therefore \tilde{v}+\tilde{w} \notin V
+ \end{equation}
+ \begin{equation*} 
+ \therefore V \text{ is not a real vector space with respect to entry-wise vector addition and scalar multiplication.}
+ \end{equation*}
+}
+\pagebreak 
+
+
+
+\vspace{20pt}
+
+
+\noin {\bf 2}   Let $V=\{ (x_1, x_2) \mid  x_1, x_2>0, \mbox{ and } x_1+x_2=1\}$.  Define vector addition in $V$ by
+$$(x_1, x_2)+(y_1, y_2)= \frac{ (x_1y_1, x_2y_2)}{x_1y_1+x_2y_2}$$
+and scalar multiplication in $V$ by
+$$c(x_1, x_2)= \frac{ (x_1^c, x_2^c)}{x_1^c +x_2^c}$$
+Then $V$ is a real vector space.
+
+\vspace{20pt}
+
+\noin{(a)}  Verify that axiom AIII. (Medici, pp104) holds in $V$.
+
+
+%Question 2(a)
+
+{
+	\vspace*{-10pt}
+	%%% Do not change the height of this box. Your work must fit inside it.
+	
+	\makenonemptybox{275pt}{
+	
+    \begin{equation}
+	    \text{Let } \tilde{v}=(\alpha,\;\beta),\;\tilde{0}=(a,\;b)\;\forall\; \alpha,\;\beta,\;a,\;b \in \mathbb R 
+    \end{equation}
+	\begin{align}
+        0\cdot \tilde{v}&=\tilde{0}\;\;\;\;\;\big[\text{By [PV]}\big]\\
+	    0\cdot(\alpha,\;\beta)&=(a,\;b)\\
+        \bigg(\frac{\alpha^0}{\alpha^0+\beta^0},\frac{\beta^0}{\alpha^0+\beta^0}\bigg)&=(a,\;b) \;\;\;\;\;\big[\text{By scalar mult.}\big]\\
+        a = \frac{1}{2},\;b=\frac{1}{2}\implies \tilde{0}&=\bigg(\frac{1}{2},\;\frac{1}{2}\bigg)\;\;\;\;\;\big[\text{By real number operations}\big]\\
+        \text{Given AIII: }\tilde{v}+\tilde0&=\tilde{v}\\
+	    (\alpha,\;\beta)+\bigg(\frac{1}{2},\;\frac{1}{2}\bigg)&=(\alpha,\;\beta)\;\;\;\;\;\big[\text{Substituting zero vector}\big]\\
+         \frac{\big(\frac{\alpha}{2},\;\frac{\beta}{2}\big)}{\frac{\alpha}{2}+\frac{\beta}{2}}&=(\alpha,\;\beta)\;\;\;\;\;\big[\text{By vec. add.}\big]\\
+         \bigg(\frac{\alpha}{\alpha+\beta},\frac{\beta}{\alpha+\beta}\bigg)&=(\alpha,\;\beta)\;\;\;\;\;\big[\text{By real number operations}\big]
+	\end{align}
+    \begin{equation}
+        \because \alpha+\beta=1
+    \end{equation}
+    \begin{equation}
+        \text{LHS }=(\alpha,\;\beta)=\text{ RHS}
+    \end{equation}
+    \begin{equation*}
+        \therefore \text{ [AIII] holds in }V
+    \end{equation*}
+ 
+	}
+}
+
+\noin{(b)}  Verify that axiom AIV. (Medici, pp104) holds in $V$.
+
+
+%Question 2(b)
+
+{
+	\vspace*{-10pt}
+	%%% Do not change the height of this box. Your work must fit inside it.
+	
+	\makenonemptybox{275pt}{
+	%%% Your work goes here! 
+    \begin{align}
+    \text{Let } \tilde{v}&=(\alpha,\;\beta)\;\forall\; \alpha,\;\beta \in \mathbb R \\
+    \text{Given [AIV]: }\tilde{v}+(-\tilde{v})&=\tilde0
+    \\
+    (\alpha,\;\beta) + (-1\cdot(\alpha,\;\beta))&=\bigg(\frac{1}{2},\;\frac{1}{2}\bigg)\;\;\;\;\;\big[\text{By [MIV]}\big]
+    \\
+    (\alpha,\;\beta) + \Bigg(\frac{\frac{1}{\alpha}}{\frac{1}{\alpha}+\frac{1}{\beta}},\;\frac{\frac{1}{\alpha}}{\frac{1}{\alpha}+\frac{1}{\beta}}\Bigg)&=\bigg(\frac{1}{2},\;\frac{1}{2}\bigg)\;\;\;\;\;\big[\text{By scalar mult.}\big]
+    \\
+    (\alpha,\;\beta)+\Bigg(\frac{\beta}{\alpha+\beta},\;\frac{\alpha}{\alpha+\beta}\bigg)&=\bigg(\frac{1}{2},\;\frac{1}{2}\bigg)\;\;\;\;\;\big[\text{By real number operations}\big]
+    \\
+    (\alpha,\;\beta)+(\beta,\;\alpha)&=\bigg(\frac{1}{2},\;\frac{1}{2}\bigg)\;\;\;\;\;\big[\text{Since }\alpha + \beta = 1\big]
+    \\
+    \bigg(\frac{\alpha\beta}{\alpha\beta+\beta\alpha}, \;\frac{\beta\alpha}{\alpha\beta+\beta\alpha}\bigg)&=\bigg(\frac{1}{2},\;\frac{1}{2}\bigg)\;\;\;\;\;\big[\text{By vec. add.}\big]
+    \\
+    \bigg(\frac{\alpha\beta}{2\alpha\beta},\;\frac{\alpha\beta}
+    {2\alpha\beta}\bigg)&=\bigg(\frac{1}{2},\;\frac{1}{2}\bigg)\;\;\;\;\;\big[\text{By real number properties and operations}\big]
+    \\
+    \bigg(\frac{1}{2},\;\frac{1}{2}\bigg)&=\bigg(\frac{1}{2},\;\frac{1}{2}\bigg)
+    \end{align}
+        \begin{equation*}
+        \therefore \text{ [AIV] holds in }V
+    \end{equation*}
+	}
+}
+
+\pagebreak
+
+\noin{\bf 2.}   Let $V=\{ (x_1, x_2) \mid  x_1, x_2>0, \mbox{ and } x_1+x_2=1\}$.  Define vector addition in $V$ by
+$$(x_1, x_2)+(y_1, y_2)= \frac{ (x_1y_1, x_2y_2)}{x_1y_1+x_2y_2}$$
+and scalar multiplication in $V$ by
+$$c(x_1, x_2)= \frac{ (x_1^c, x_2^c)}{x_1^c +x_2^c}$$
+Then $V$ is a real vector space.
+    
+\vspace{20pt}
+
+\noin{(c)}  Verify that axiom MIII. (Medici, pp104) holds in $V$.
+
+%Question 2(a)
+{
+	\vspace*{-10pt}
+	%%% Do not change the height of this box. Your work must fit inside it.
+	
+	\makenonemptybox{550pt}{
+	%%% Your work goes here! 
+ \begin{align*}
+ \end{align*}
+    \begin{equation}
+    \text{Let }\tilde{u}=(a,\;b),\;\tilde{v}=(c,\;d)\;\forall\; a,\;b,\;c,\;d \in \mathbb R 
+    \end{equation}
+    \text{[MIII]a:}
+    \begin{align}
+        (\alpha+\beta)\cdot \tilde{u} &=\alpha\cdot\tilde{u}+\beta\cdot\tilde{u}\\
+        (\alpha+\beta)\cdot (a,\;b) &=\alpha\cdot(a,\;b)+\beta\cdot(a,\;b)\\
+        (\alpha+\beta)\cdot (a,\;b) &=\bigg(\frac{a^\alpha}{a^\alpha+b^\alpha},\;\frac{b^\alpha}{a^\alpha+b^\alpha}\bigg)+\bigg(\frac{a^\beta}{a^\beta+b^\beta},\;\frac{b^\beta}{a^\beta+b^\beta}\bigg)\;\;\;\;\;\big[\text{By scalar mult.}\big]\\
+        (\alpha+\beta)\cdot (a,\;b) &=\frac{\bigg(\frac{a^\alpha\cdot a^\beta}{(a^\alpha+b^\alpha)(a^\beta+b^\beta)},\;\frac{b^\alpha\cdot b^\beta}{(a^\alpha+b^\alpha)(a^\beta+b^\beta)}\bigg)}{\frac{a^\alpha\cdot a^\beta+b^\alpha\cdot b^\beta}{(a^\beta+b^\beta)}}\;\;\;\;\;\big[\text{By vec. add.}\big]\\
+        (\alpha+\beta)\cdot (a,\;b) &=\bigg( \frac{a^{\alpha+\beta}}{a^{\alpha+\beta}+b^{\alpha+\beta}},\;\frac{b^{\alpha+\beta}}{a^{\alpha+\beta}+b^{\alpha+\beta}}\bigg)\;\;\;\;\;\big[\text{By real number operations}\big]\\
+        \bigg(\frac{a^{\alpha+\beta}}{a^{\alpha+\beta}+b^{\alpha+\beta}},\;\frac{b^{\alpha+\beta}}{a^{\alpha+\beta}+b^{\alpha+\beta}}\bigg)&=\bigg(\frac{a^{\alpha+\beta}}{a^{\alpha+\beta}+b^{\alpha+\beta}},\;\frac{b^{\alpha+\beta}}{a^{\alpha+\beta}+b^{\alpha+\beta}}\bigg)\;\;\;\;\;\big[\text{By scalar mult.}\big]\\
+    \end{align}
+    \begin{equation*}
+    \therefore \text{ [MIII]a holds}
+    \end{equation*}
+    \begin{equation*}
+    \end{equation*}
+    \text{[MIII]b:}
+    \begin{align}
+    \alpha\cdot(\tilde{u}+\tilde{v})&=\alpha\cdot\tilde{u}+\alpha\cdot\tilde{v}\\
+    \alpha\cdot\big((a,\;b)+(c,\;d)\big)&=\alpha\cdot(a,\;b)+\alpha\cdot(c,\;d)\\
+    \alpha\cdot\frac{(a\cdot c,\;b\cdot d)}{a\cdot c + b\cdot d}&=\frac{\big(a^\alpha,\;c^\alpha\big)}{a^\alpha+c^\alpha}+\frac{\big(b^\alpha,\;d^\alpha\big)}{b^\alpha+d^\alpha}\;\;\;\big[\text{By vec. add.}\And\text{scalar mult.}\big]\\
+    \frac{\bigg(\big(\frac{a\cdot c}{a\cdot c + b\cdot d}\big)^\alpha,\;\big(\frac{b\cdot d}{a\cdot c + b\cdot d}\big)^\alpha\bigg)}{\big(\frac{a\cdot c}{a\cdot c + b\cdot d}\big)^\alpha+\big(\frac{b\cdot d}{a\cdot c + b\cdot d}\big)^\alpha}&=\frac{\bigg(\frac{a^\alpha\cdot c^\alpha}{(a^\alpha+b^\alpha)(c^\alpha+d^\alpha)},\;\frac{b^\alpha\cdot d^\alpha}{(a^\alpha+b^\alpha)(c^\alpha+d^\alpha)}\bigg)}{\frac{a^\alpha\cdot c^\alpha+b^\alpha\cdot d^\alpha}{(a^\alpha+b^\alpha)(c^\alpha+d^\alpha)}}\;\;\;\big[\text{By scalar mult.}\And\text{vec. add.}\big]\\
+    \Bigg(\frac{\frac{(a\cdot c)^\alpha}{(a\cdot c+b\cdot d)^\alpha}}{\frac{(a\cdot c)^\alpha+(b\cdot d)^\alpha}{(a\cdot c+b\cdot d)^\alpha}},\;\frac{\frac{(b\cdot d)^\alpha}{(a\cdot c+b\cdot d)^\alpha}}{\frac{(a\cdot c)^\alpha+(b\cdot d)^\alpha}{(a\cdot c+b\cdot d)^\alpha}}\Bigg)&=\Bigg(\frac{\frac{a^\alpha\cdot c^\alpha}{(a^\alpha+b^\alpha)(c^\alpha+d^\alpha)}}{\frac{a^\alpha\cdot c^\alpha+b^\alpha\cdot d^\alpha}{(a^\alpha+b^\alpha)(c^\alpha+d^\alpha)}},\;\frac{\frac{b^\alpha\cdot d^\alpha}{(a^\alpha+b^\alpha)(c^\alpha+d^\alpha)}}{\frac{a^\alpha\cdot c^\alpha+b^\alpha\cdot d^\alpha}{(a^\alpha+b^\alpha)(c^\alpha+d^\alpha)}}\Bigg)\;\;\;\big[\text{By real number operations}\big]\\
+    \bigg(\frac{(a\cdot c)^\alpha}{(a\cdot c)^\alpha+(b\cdot d)^\alpha},\;\frac{(b\cdot d)^\alpha}{(a\cdot c)^\alpha+(b\cdot d)^\alpha}\bigg)&=\bigg(\frac{(a\cdot c)^\alpha}{(a\cdot c)^\alpha+(b\cdot d)^\alpha},\;\frac{(b\cdot d)^\alpha}{(a\cdot c)^\alpha+(b\cdot d)^\alpha}\bigg)\;\;\;\big[\text{By real number operations}\big]
+    \end{align}
+    \begin{equation*}
+    \therefore \text{ [MIII]b holds}
+    \end{equation*}
+        \begin{equation*}
+    \end{equation*}
+    \begin{equation*}
+    \therefore \text{ [MIII] holds in }V
+    \end{equation*}
+    % \end{align*} 
+	}
+}
+
+
+
+\pagebreak
+
+
+\noin{\bf 3.}  Recall that $P_3(\mathbb R)=\{ a_0+a_1x+a_2x^2+a_3x^3 \mid a_0, a_1, a_2, a_3\in\mathbb R \}$, the set of polynomials of degree at most 3 with real coefficients, is a real vector space with respect to the usual polynomial addition and scalar multiplication. 
+   
+\vspace{20pt}
+
+\noin{(a)} Give an example of a subset $S$ of $P_3(\mathbb R)$ that is closed under vector addition but not under scalar multiplication.  You should both state clearly your subset $S$ and demonstrate that $S$ satisfies the requirement of the question.
+
+%Question 3(a)
+
+{
+	\vspace*{-10pt}
+	%%% Do not change the height of this box. Your work must fit inside it.
+	
+	\makenonemptybox{550pt}{
+	
+	%%% Your work goes here! 
+ \begin{align*}
+ \end{align*}
+    \begin{equation}
+    \text{Consider } S =\big{\{}a_{0}+a_{1} x+a_{2} x^2+a_{3} x^3\;|\;a_1, a_2, a_3, a_4 \in \mathbb R^+, a_{0}+a_{1} x+a_{2} x^2+a_{3}x^3>0 \;\;\;\;\;\forall\; x\in\bathbb R^+  \big{\}}\\
+    \end{equation}
+    \begin{equation*}
+    \end{equation*}
+    \begin{equation}
+    \text{Let } \tilde{v} &= (a_{0}+a_{1} \cdot x+a_{2} \cdot x^2+a_{3} \cdot x^3),\;\tilde{u} &= (a'_{0}+a'_{1} \cdot x+a'_{2} \cdot x^2+a'_{3} \cdot x^3),\;\tilde{v},\tilde{u}\in S
+\end{equation}
+\begin{equation}
+    \forall\; a_0, \;a_1, \;a_2, \;a_3, \;a'_0, \;a'_1,\; a'_2,\; a'_3 \in \mathbb R^+
+\end{equation}
+\begin{align*}
+    \end{align*}
+    \begin{equation}
+    (a_{0}+a_{1} \cdot x+a_{2} \cdot x^2+a_{3} \cdot x^3)>0,\; (a'_{0}+a'_{1} \cdot x+a'_{2} \cdot x^2+a'_{3} \cdot x^3)>0 \;\;\;\;\;\forall\; x\in\mathbb R^+
+    \end{equation}
+    \begin{equation}
+    \therefore \;\tilde{v}+\tilde{u} = \since (a_{0}+a_{1} \cdot x+a_{2} \cdot x^2+a_{3} \cdot x^3) + (a'_{0}+a'_{1} \cdot x+a'_{2} \cdot x^2+a'_{3} \cdot x^3)>0 \;\;\;\;\; \forall \;x\in\mathbb R^+
+    \end{equation}
+    \begin{equation}
+     \therefore \tilde{v}+\tilde{u} \in \mathbb R^+ \; \forall \; x\in\mathbb R^+
+    \end{equation}
+    \begin{equation}
+     \therefore \tilde{v}+\tilde{u} \in S
+    \end{equation}
+    \begin{equation*}
+     \therefore \text{By the definition of the subset, closure under vector addition holds}
+    \end{equation*}
+    \begin{equation*}
+    \end{equation*}
+    \begin{equation}
+    \tilde{v} &= (a_{0}+a_{1} \cdot x+a_{2} \cdot x^2+a_{3} \cdot x^3)\;\forall \;a_0,\;a_1,\;a_2,\;a_3 \in \mathbb R^+
+\end{equation}
+\begin{equation}
+    \text{Let }\alpha \in \mathbb R
+\end{equation}
+\begin{align}
+    \alpha\cdot \tilde{v} &= \alpha \cdot(a_{0}+a_{1} \cdot x+a_{2} \cdot x^2+a_{3} \cdot x^3)\\
+    &=  \big(\alpha \cdot (a_{0})+\alpha \cdot (a_{1} \cdot x)+\alpha \cdot (a_{2} \cdot x^2)+\alpha \cdot (a_{3} \cdot x^3)\big)\;\;\;\;\;\big[\text{By scalar mult.}\And\text{properties of }P_3\big]
+\end{align}
+\begin{equation*}
+\end{equation*}
+\begin{equation}
+\text{Consider }\beta = -1,\;x>0
+\end{equation}
+\begin{align}
+    \beta\cdot\tilde{v} &= -1\cdot\big(a_{0}+a_{1} \cdot x+a_{2} \cdot x^2+a_{3} \cdot x^3\big)\\
+    &=\big(-a_0+-a_1x+-a_2x^2+-a_3x^3\big)\ngtr 0\;\;\;\;\;\big[\text{By scalar mult.}\big]
+\end{align}
+\begin{equation}
+\therefore \beta\cdot \tilde{v} \notin S
+\end{equation}
+\begin{equation*}
+\therefore \text{By the definition of the subset, closure under scalar multiplication does not hold}
+\end{equation*}
+
+
+
+}
+
+\pagebreak
+
+\noin{\bf 3.} Recall that $P_3(\mathbb R)=\{ a_0+a_1x+a_2x^2+a_3x^3 \mid a_0, a_1, a_2, a_3\in\mathbb R \}$, the set of polynomials of degree at most 3 with real coefficients, is a real vector space with respect to the usual polynomial addition and scalar multiplication. 
+
+\vspace{20pt}
+
+\noin{(b)}  Give an example of a subset $S$ of $P_3(\mathbb R)$ that is closed under scalar multiplication but not under vector addition.  You should both state clearly your subset $S$ and demonstrate that $S$ satisfies the requirement of the question.
+    
+    
+    {
+	\vspace*{-10pt}
+	%%% Do not change the height of this box. Your work must fit inside it.
+	
+	\makenonemptybox{550pt}{
+	%%% Your work goes here! 
+    % \begin{align}
+    %     \text{Consider } S=\{a_0+a_0x+a_1x^2+a_2x^3 \mid a_0, a_1, a_2\in\mathbb R,\;a_0\neq a_1\neq a_2\neq a_3\}\cup \{\tilde0\}
+    % \end{align}
+    \begin{align}
+        \text{Consider }S&=\big{\{} a_0+a_1x+a_2x^2+a_3x^3 \mid a_0, a_1, a_2, a_3\in\mathbb R,\; x\in\mathbb Z \;\forall\; a_0+a_1x+a_2x^2+a_3x^3=0 \big{\}}\cup\{{\tilde0}\}\\
+        &\text{Let } \tilde{v} = (a_{0}+a_{1} \cdot x+a_{2} \cdot x^2+a_{3} \cdot x^3),\;\tilde{u} = (a'_{0}+a'_{1} \cdot x+a'_{2} \cdot x^2+a'_{3} \cdot x^3)\\
+        &\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\forall\; a_0, \;a_1, \;a_2, \;a_3, \;a'_0, \;a'_1,\; a'_2,\; a'_3 \in \mathbb R^+
+    \end{align}
+    \begin{align}
+        \tilde{v}+\tilde{u} &= \since (a_{0}+a_{1} \cdot x+a_{2} \cdot x^2+a_{3} \cdot x^3) + (a'_{0}+a'_{1} \cdot x+a'_{2} \cdot x^2+a'_{3} \cdot x^3) \;\;\;\;\; \forall \;x\in\mathbb R^+\\
+        &=\big(a_0+a_0'+a_1\cdot x +a_1'\cdot x+a_2\cdot x^2+a_2'\cdot x^2+a_3\cdot x^3+a_3'\cdot x^3\big)\;\;\;\big[\text{By scalar add.}\big]
+    \end{align}
+    \begin{align}
+        &\text{Consider } 
+        \begin{cases} \phantom{-} \tilde{v'}=8+(-6)x+1x^2+0x^3=0 \\ \phantom{-}  \tilde{u'}=24+(-11)x+1x^2+0x^3=0 \end{cases}\\
+        &\begin{cases} \phantom{-} \tilde{v'}=0:\;x=\frac{-(-6)\pm\sqrt{(-6)^2-4\cdot8\cdot1}}{2\cdot1}=\frac{6\pm2}{2}=4,2\in\mathbb Z \;\;\;\big[\text{By real number operations}\big]\\ \phantom{-}  \tilde{u'}=0:\;x=\frac{-(-11)\pm\sqrt{(-11)^2-4\cdot24\cdot1}}{2\cdot1}=\frac{11\pm5}{2}=8,3\in\mathbb Z \;\;\;\big[\text{By real number operations}\big]\end{cases}\\
+        &\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\therefore\;\tilde{u'},\;\tilde{v'}\in S
+    \end{align}
+    \begin{align}
+        \tilde{u'}+\tilde{v'}&=\big(8+(-6)x+1x^2+0x^3+24+(-11x)+1x^2+0x^3\big)\;\;\;\big[\text{By (60)}\big]\\
+        &=\big(32+(-17)x+2x^2\big)\notin\{\tilde{0}\},\text{ where }\tilde0 = (0)\;\;\;\big[\text{By real number operations}\big]\\
+        \text{Set }0&=\big(32+(-17)x+2x^2\big)\\
+        x&=\frac{-(-17)\pm\sqrt{(-17)^2-4\cdot32\cdot2}}{2\cdot2}=\frac{16\pm\sqrt33}{4}\notin\mathbb Z\;\;\;\big[\text{By real number operations}\big]
+    \end{align}
+    \begin{align*}
+        \therefore\; \text{By the definition of the subset, closure under vector addition does not hold}
+    \end{align*}
+    \begin{align}
+        &\text{Consider }\tilde{v}\in S,\;\alpha\in\mathbb R\\
+        \text{Let }0=\tilde{v}&=a_0+a_1x+a_2x^2+a_3x^0\implies x\in\mathbb Z\;\;\;\big[\text{By definition of }S\big]\\
+        \text{Let }\alpha\cdot\tilde{v}&=\alpha\cdot(a_0+a_1x+a_2x^2+a_3x^3)=0
+    \end{align}
+    \begin{align}
+        \text{Case 1: } \alpha&\neq0\\
+        \frac{1}{\alpha}\cdot\big(\alpha\cdot (a_0+a_1x+a_2x^2+a_3x^3)\big)&=\frac{1}{\alpha}\cdot0\\
+        \frac{1}{\alpha}\cdot\big(\alpha\cdot (a_0+a_1x+a_2x^2+a_3x^3)\big)&=0\;\;\;\big[\text{By real number operations}\big]\\
+        1\cdot(a_0+a_1x+a_2x^2+a_3x^3)&=0\;\;\;\big[\text{By [MIV]}\big]\\
+        a_0+a_1x+a_2x^2+a_3x^3&=0\implies x\in\mathbb Z\;\;\;\big[\text{By (69)}\big]
+    \end{align}
+    \begin{align}
+        \text{Case 2: }\alpha&=0\\
+        0\cdot\tilde{v}&=0\;\;\;\big[\text{By [PV]}\big]
+    \end{align}
+    \begin{align}
+        \therefore \;0\cdot\tilde{v}\in\{\tilde0\}
+    \end{align}
+    \begin{align*}
+        \therefore\;\text{By the definition of the subset, closure under scalar multiplication holds}
+    \end{align*}
+	}
+}
+%&x=\frac{-(a_1+a_1')\pm\sqrt{(a_1+a_1)^2-4\cdot(a_0+a_0')\cdot(a_2+a_2')}}{s\cdot(a_2+a_2}
+
+\end{document}

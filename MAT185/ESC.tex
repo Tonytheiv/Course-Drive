@@ -1,0 +1,254 @@
+\documentclass[11pt]{article}
+\usepackage{layout}
+\usepackage[margin=1in]{geometry}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{cite} 
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{xcolor, soul}
+\usepackage[nocheck]{fancyhdr}
+\usepackage{multirow}
+\usepackage[most]{tcolorbox}
+\graphicspath{ {./images/} }
+\usepackage{multicol}
+
+\newcommand{\resizemath}[2]% #1 = wudth, #2 = contents
+{\mathchoice{\resizestyle{#1}{\displaystyle #2}}%
+            {\resizestyle{#1}{\textstyle #2}}%
+            {\resizestyle{#1}{\scriptstyle #2}}%
+            {\resizestyle{#1}{\scriptscriptstyle #2}}%
+}
+% apply proportionate stretch
+\newcommand{\scalemath}[1]% #1 = contents
+{\mathchoice{\scalestyle{\displaystyle #1}}%
+            {\scalestyle{\textstyle #1}}%
+            {\scalestyle{\scriptstyle #1}}%
+            {\scalestyle{\scriptscriptstyle #1}}%
+}
+
+\newcommand{\resizestyle}[2]% #1 = contents with style
+{\bgroup
+  \sbox0{\def\@stretch{1}$\m@th #2$}% compute stretch factor
+  \pgfmathdivide{#1}{\wd0}%
+  \global\let\@stretch=\pgfmathresult
+  \hbox to #1{$\m@th #2$}%
+\egroup}
+
+\newtcbtheorem{Summary}{\bfseries Design}{enhanced,drop shadow={black!50!white},
+  coltitle=black,
+  top=0.3in,
+  attach boxed title to top left=
+  {xshift=1.5em,yshift=-\tcboxedtitleheight/2},
+  boxed title style={size=small,colback=pink}
+}{summary}
+
+\setstretch{1.20}
+\setlength{\marginparwidth}{5pt}
+\setlength{\marginparsep}{0pt}
+\title{\textbf{Student Engineer Portfolio \& Handbook}}
+\sethlcolor{yellow}
+\date{}
+\begin{document}
+{\fontfamily{cmss}\selectfont
+\textbf{Recap}
+
+\begin{itemize}
+\item Week 5:
+\begin{itemize}
+\item Sequences
+\item Series (geometric series)
+\end{itemize}
+
+\item Week 6:
+\begin{itemize}
+\item Estimating sums
+\item Series convergence/divergence tests
+\item Alternating series
+\item Power series, representation of functions as power series
+\end{itemize}
+
+\item Week 7:
+\begin{itemize}
+\item Taylor and Maclauren series
+\item Applications of Taylor polynomials (function approximations)
+\end{itemize}
+
+\item Week 8:
+\begin{itemize}
+\item Fourier series
+\item Lines and planes
+\item Cylinders and quadric surfaces
+\item Vector functions (derivatives and integrals)
+\end{itemize}
+
+\item Week 9:
+\begin{itemize}
+\item Arc length and curvature
+\item Velocity and acceleration
+\end{itemize}
+
+\item Week 10:
+\begin{itemize}
+\item Functions of several variables (limits and continuity)
+\item Partial derivatives
+\end{itemize}
+\end{itemize}
+
+\textbf{General things to remember}
+
+\begin{itemize}
+\item Sequences
+\begin{itemize}
+\item Equation and limit of the $n$th term, limit laws
+\item Relation to functions
+\item Convergence, monotonicity
+\end{itemize}
+
+\item Series
+\begin{itemize}
+\item Infinite/partial sums
+\item Harmonic series, geometric series, $p$-series, alternating series
+\item Divergence, convergence, conditional/absolute convergence
+\item Convergence tests (limit of $a_n$, integral test, direct/limit comparisons, alternating series, ratio, root)
+\item Properties of convergent series
+\end{itemize}
+
+\item Power series
+\begin{itemize}
+\item Notation, centered around $a$
+\item Interval/radius of convergence (determined using convergence tests)
+\item Representation of functions as power series
+\item Manipulating, differentiating, and/or integrating series of basic functions to get series of other functions
+\end{itemize}
+
+\item Taylor and Maclauren series
+\begin{itemize}
+\item Construction based on the series formula (differentiating)
+\item Important series, including binomial series
+\item Determining series of functions using known series of basic functions
+\item Taylor polynomials
+\item Symbolically estimating functions
+\item Taylor's inequality and its required conditions
+\end{itemize}
+
+\item Fourier series
+\begin{itemize}
+\item Piecewise continuous functions
+\item Series and coefficient equations
+\item Fourier Convergence Theorem
+\item Simplification where possible
+\end{itemize}
+
+\item Equations in 3D space
+\begin{itemize}
+\item Lines (parametric, symmetric, segments)
+\item Planes (vector, scalar)
+\item Cross and dot products (differentiation properties)
+\item Relationships between lines and planes (intersections, parallel, skew, distance etc.)
+\item Cylinders and quadric surfaces
+\item Vector functions and space curves (derivatives, integrals, intersections of surfaces)
+\item Arc length, curvature, normal/tangent/binormal vectors, torsion
+\item Multivariable functions
+\item Domain and range
+\item Level curves/surfaces, contour plots
+\item Limits (precise definition, proving whether or not it exists, continuity)
+\item Partial derivatives (how to compute, interpretations, higher order)
+\item Clairaut’s Theorem
+\end{itemize}
+\end{itemize}
+
+\newpage
+\begin{enumerate}
+    \item Trig Identities for Fourier
+    \begin{enumerate}
+        \item $$\sin A\sin B=\frac{1}{2}\left[\cos(A-B)-\cos(A+B)\right]$$
+        \item $$\cos A\cos B=\frac{1}{2}\left[\cos(A-B)+\cos(A+B)\right]$$
+        \item $$\sin A\cos B=\frac{1}{2}\left[\sin(A-B)+\sin(A+B)\right]$$
+    \end{enumerate}
+    \item Fourier for $[-\pi,\;\pi]$
+    \begin{enumerate}
+        \item $$a_0=\frac{1}{2\pi}\int_{-\pi}^\pi f(t)dt$$
+        \item $$a_n=\frac{1}{\pi}\int_{-\pi}^\pi f(t)\cos(nt)dt$$
+        \item $$b_n=\frac{1}{\pi}\int_{-\pi}^\pi f(t)\sin(nt)dt$$
+        \item $$f(t)=a_0+\sum_1^\infty a_n\cos(nx)+b_n\sin(nx)$$
+    \end{enumerate}
+    \item General Fourier for $[-L,\;L]$
+    \begin{enumerate}
+        \item $$a_0=\frac{1}{2L}\int_{-L}^L f(t)dt$$
+        \item $$a_n=\frac{1}{L}\int_{-L}^L f(t)\frac{\cos(n\pi t)}{L}dt$$
+        \item $$b_n=\frac{1}{L}\int_{-L}^L f(t)\frac{\sin(n\pi t)}{L}dt$$
+        \item $$f(t)=a_0+\sum_1^\infty a_n\frac{\cos(n\pi t)}{L}+b_n\frac{\sin(n\pi t)}{L}$$
+    \end{enumerate}
+    \item Space Curves
+    \begin{enumerate}
+        \item 
+        $$L_{arc}=\int_a^b|r'(t)|dt$$
+        \item 
+        $$\frac{ds}{dt}=|r'(t)|$$
+        \item 
+        $$\hat{T}(t)=\frac{r'(t)}{|r'(t)|}$$
+        \item
+        $$\hat{N}(t)=\frac{\hat{T'}(t)}{|\hat{T'}(t)|}$$
+        \item
+        $$\hat{B(t)}=\hat{T(t)}\times\hat{N(t)}$$
+        \item
+        $$\kappa=\frac{d\hat{T}}{ds}=\frac{|\hat{T(t)}|}{|r'(t)|}$$
+        \item
+        $$\tau=-\frac{d\hat{B}}{ds}\cdot\hat{N(t)}$$
+        \item
+        $$a=a_T+a_N$$
+        \item
+        $$a_T=v'=\frac{|r'\cdot r''|}{|r'|}$$
+        $$a_N=\kappa v^2=\frac{|r'\times r''|}{|r'|}$$
+        \item Equation of Normal Plane at $t$
+        \begin{align*}
+            r(t)&=<\alpha,\beta,\gamma>\\
+            r'(t)&=<a,b,c>\\
+            0&=a(x-\alpha)+b(y-\beta)+c(z-\gamma)\\
+        \end{align*}
+        \item Equation of Oscillating Plane at $t$
+        \begin{align*}
+            r(t)&=<\alpha,\beta,\gamma>\\
+            B(t)&=<a,b,c>\\
+            0&=a(x-\alpha)+b(y-\beta)+c(z-\gamma)\\
+        \end{align*}
+    \end{enumerate}
+    \item Sequences
+    \begin{enumerate}
+        \item Sum of infinite geometric sequence
+        $$S=\frac{a}{1-r}$$
+        \item If the limit of a sequence goes to a real number, the sequence is convergent 
+        \item Recursively defined sequences eg. $a_{n+1}=\sqrt{a_{n}+k}$
+        $$\lim_{n\hookrightarrow\infty}a_{n+1}=\lim_{n\hookrightarrow\infty}a_n=L\implies L=\sqrt{L+k}$$
+        $$L=\text{solve the equation you lazy ass}$$
+    \end{enumerate}
+    \item Series
+    \begin{enumerate}
+        \item Integral test: Given $f$ continuous positive and decreasing on $[1,\infty)$ if the integral converges the series converges
+        \item Direct comparison test: Just use brain
+        \item Limit comparison test:
+        $$\lim_{n\hookrightarrow\infty}\frac{a_n}{b_n},\;C(b_n)=1\implies C(a_n)=1$$
+        \item Alternating series test: for $\sum (-1)^n b_n$, if $b_n$ is decreasing and the last term goes to $0$, the series converges
+        \item Ratio test:
+        $$\lim_{n\hookrightarrow\infty}\left|\frac{a_{n+1}}{a_n}\right|\{<=>\}\;1$$
+        \item Root test:
+        $$\lim_{n\hookrightarrow\infty}^n\sqrt{a_n}\;\{<=>\}\;1$$
+    \end{enumerate}
+    \item Taylor \& Maclaurin Series
+    $$f(x)=\frac{f(a)}{0!}(x-a)^0+\frac{f'(a)}{1!}(x-a)^1+\frac{f''(a)}{2!}(x-a)^2+\frac{f'''(a)}{3!}(x-a)^3...$$
+    \item Taylor's inequality: If $|f^{n+1}(x)|\leq M$ for $|x-a|\leq d$ then the series satisfies the following:
+    $$|R_n(x)|\leq\frac{M}{(n+1)!}|x-a|^{n+1}$$
+    \item Binomial Series
+    $$(1+x)^k=\frac{1}{0!}+\frac{kx^1}{1!}+\frac{k(k-1)x^2}{2!}+\frac{k(k-1)(k-2)x^3}{3!}+...$$
+    $$\text{last term is }(k-n+1)$$
+\end{enumerate}
+} 
+\end{document} 

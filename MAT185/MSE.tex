@@ -1,0 +1,127 @@
+\documentclass[11pt]{article}
+\usepackage{layout}
+\usepackage[margin=1in]{geometry}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{cite} 
+\usepackage{float}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{xcolor, soul}
+\usepackage[nocheck]{fancyhdr}
+\usepackage{multirow}
+\usepackage[most]{tcolorbox}
+\graphicspath{ {./images/} }
+\usepackage{multicol}
+
+\newcommand{\resizemath}[2]% #1 = wudth, #2 = contents
+{\mathchoice{\resizestyle{#1}{\displaystyle #2}}%
+            {\resizestyle{#1}{\textstyle #2}}%
+            {\resizestyle{#1}{\scriptstyle #2}}%
+            {\resizestyle{#1}{\scriptscriptstyle #2}}%
+}
+% apply proportionate stretch
+\newcommand{\scalemath}[1]% #1 = contents
+{\mathchoice{\scalestyle{\displaystyle #1}}%
+            {\scalestyle{\textstyle #1}}%
+            {\scalestyle{\scriptstyle #1}}%
+            {\scalestyle{\scriptscriptstyle #1}}%
+}
+
+\newcommand{\resizestyle}[2]% #1 = contents with style
+{\bgroup
+  \sbox0{\def\@stretch{1}$\m@th #2$}% compute stretch factor
+  \pgfmathdivide{#1}{\wd0}%
+  \global\let\@stretch=\pgfmathresult
+  \hbox to #1{$\m@th #2$}%
+\egroup}
+
+\newtcbtheorem{Summary}{\bfseries Design}{enhanced,drop shadow={black!50!white},
+  coltitle=black,
+  top=0.3in,
+  attach boxed title to top left=
+  {xshift=1.5em,yshift=-\tcboxedtitleheight/2},
+  boxed title style={size=small,colback=pink}
+}{summary}
+
+\setstretch{1.20}
+\setlength{\marginparwidth}{5pt}
+\setlength{\marginparsep}{0pt}
+\title{\textbf{Student Engineer Portfolio \& Handbook}}
+\sethlcolor{yellow}
+\date{}
+\begin{document}
+{\fontfamily{cmss}\selectfont
+\begin{enumerate}
+    \item 
+    \begin{enumerate}
+        \item Cu$^{2+}\rightarrow$1s$^2$ 2s$^2$ 2p$^6$ 3s$^2$ 3p$^6$ 3d$^9$
+        \item Ni $\rightarrow$1s$^2$ 2s$^2$ 2p$^6$ 3s$^2$ 3p$^6$ 3d$^8$ 4s$^2$
+        \item O $^{2-}\rightarrow$1s$^2$ 2s$^2$ 2p$^6$
+        \item Ar $\rightarrow$1s$^2$ 2s$^2$ 2p$^6$ 3s$^2$ 3p$^6$
+        \item Au $\rightarrow$1s$^2$ 2s$^2$ 2p$^6$ 3s$^2$ 3p$^6$ 3d $^{10}$ 4s$^2$ 4p$^6$ 4d$^{10}$ 5s$^2$ 5p$^6$ 4f$^{14}$ 5d$^{10}$ 6s$^1$
+        \item Na${^+}\rightarrow$1s$^2$ 2s$^2$ 2p$^6$ 
+    \end{enumerate}
+    
+    \item $10^\circ C$ in 6 days $\rightarrow \frac{10\cdot2}{6\cdot24\cdot60^2}=3.86\cdot10^{-5}\left[\frac{^\circ C}{s}\right]=0.162\left[\frac{j}{s}\right]$ \\
+    \begin{align*}
+        E&=\frac{hc}{\lambda}\\
+        E&=\frac{6.63\cdot10^{-34}\cdot3\cdot10^8}{\lambda}\\
+        \lambda&=\frac{6.63\cdot10^{-34}\cdot3\cdot10^8}{0.162}\cdot100\cdot4.09\cdot10^{15}\left[j\cdot s\cdot m\cdot s^{-1}\cdot s\cdot j^{-1}\cdot\text{photons}\cdot s^{-1}\right]\\
+        \lambda&=5.02\cdot10^{-9}\; [m]\\
+        \lambda&=\fbox{$\displaystyle\scalemath{502\;[nm]}$}
+    \end{align*}  
+    
+    \item $\sigma=\sigma_0e^{\frac{-E_g}{2k_bT}}$ $T_i=298.15\;[K]$, $T_f=373.15\;[K]$, $k_b=8.617\cdot10^{-5}\;[eV]$
+    \begin{align*}
+        \sigma_f&=10\sigma_i\\
+        e^{^{\frac{-E_g}{2\cdot8.617\cdot10^{-5}\cdot373.15}}}&=10e^{^{\frac{-E_g}{2\cdot8.617\cdot10^{-5}\cdot298.15}}}\\
+        \ln\left[e^{^{\frac{-E_g}{2\cdot8.617\cdot10^{-5}\cdot373.15}}}\right]&=\ln\left[10e^{^{\frac{-E_g}{2\cdot8.617\cdot10^{-5}\cdot298.15}}}\right]\\
+        \frac{-E_g}{2\cdot8.617\cdot10^{-5}\cdot373.15}+\frac{E_g}{2\cdot8.617\cdot10^{-5}\cdot298.15}&=\ln(10)\\
+        -298.15E_g+373.15E_g&=44.15\\
+        E_g&=\fbox{$\displaystyle\scalemath{0.59\;[eV]}$}
+    \end{align*} 
+    
+    \item $\Omega^{-1}\cdot cm^{-3}\cdot C\cdot \frac{cm^2}{Vs}=\left[\Omega^{-1}\cdot cm^{-1}\right]$
+    \begin{align*}
+        \sigma&=nq(\mu_n+\mu_p)\\
+        &=4\cdot10^{13}\cdot1.6\cdot10^{-19}\cdot(3600+1700)\\
+        &=\fbox{$\displaystyle\scalemath{0.034\;\left[\Omega^{-1}\cdot cm^{-1}\right]}$}
+    \end{align*}
+    
+    \item $\rho=7.9\;\left[\frac{g}{cm^3}\right]$, $A_{Gd}=157.25\;\left[\frac{g}{mol}\right]$, unpaired spins: 4f$^7$ 5d$^1\implies7+1=8$
+    \begin{align*}
+        M_S&=(8)\mu_B N\\
+        &=(8)\mu_B\left(\frac{\rho N_A}{A_{Gd}}\right)\\
+        &=(8)9.27\cdot10^{-24}\left(\frac{7.9\cdot10^6\cdot6.022\cdot10^{23}}{157.25}\right)\\
+        &=2.24\cdot10^6 \left[\frac{A}{m}\right]
+    \end{align*}
+    
+    \item $n=8$, $a=\frac{8r}{\sqrt3}$, $r=70\cdot10^{-12}\;[m]$
+    \begin{align*}
+        \rho&=\frac{nA}{V_cN_A}\\
+        &=\frac{8\cdot12}{\left(\frac{8\cdot70\cdot10^{-12}}{\sqrt3}\right)^3\cdot6.022\cdot10^{23}}\\
+        &=4716809\;\left[\frac{g}{m^3}\right]\\
+        &=\fbox{$\displaystyle\scalemath{4.72\;\left[\frac{g}{cm^3}\right]}$}
+    \end{align*}
+    
+    \item Band Gap$_{GaAs}=1.4\;[eV]$, Band Gap$_{AlAs}=3.14\;[eV]$
+    \begin{align*}
+        E&=\frac{hc}{\lambda}\\
+        &=\frac{4.135\cdot10^{-15}\cdot3\cdot10^8}{450\cdot10^{-9}}\\
+        &=2.76\;[eV]\\
+        \text{equation of line:}\\
+        y&=\frac{1.4-3.14}{1}x+3.14\\
+        y&=-1.74x+3.14\\
+        \text{if $y=2.76$: } x&=\frac{2.76-3.14}{-1.74}\\
+        x&=\fbox{$\displaystyle\scalemath{0.22}$}
+    \end{align*}
+\end{enumerate}
+}
+\end{document}

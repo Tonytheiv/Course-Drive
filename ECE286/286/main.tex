@@ -1,0 +1,795 @@
+\documentclass{article}
+\usepackage[landscape]{geometry}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{amsmath,amssymb}
+\usepackage{wrapfig}
+\usepackage{colortbl}
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage[backend=biber, style=apa,]{biblatex}
+\usepackage{setspace}
+% \usepackage[usenames, dvipsnames]{xcolor}
+% Define Verilog style
+\usepackage{listings}
+\lstdefinelanguage{riscv}{
+  morekeywords={add,sub,mul,div,addi,subi,lw,sw,beq,bne,jal,jalr,jr,li,and,andi,j,la,bnez,beqz},
+  sensitive=false,
+  morecomment=[l]{\#},
+  morestring=[b]",
+}
+\lstdefinelanguage{do}{
+  morekeywords={force, run, log, vsim, vlib, vlog},
+  sensitive=false,
+  morecomment=[l]{\#},
+  morestring=[b]",
+}
+\lstdefinestyle{verilogStyle}{
+    language=Verilog,
+    basicstyle=\tiny\ttfamily,
+    keywordstyle=\color{black},
+    commentstyle=\color{black},
+    stringstyle=\color{black},
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=2,
+    captionpos=b,
+    xleftmargin=0pt
+}
+\lstdefinestyle{doStyle}{
+    language=do,
+    basicstyle=\tiny\ttfamily,
+    keywordstyle=\color{black},
+    commentstyle=\color{black},
+    stringstyle=\color{black},
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=2,
+    captionpos=b,
+    xleftmargin=0pt
+}
+\lstdefinestyle{assembly}{
+    language=riscv,
+    basicstyle=\tiny\ttfamily,
+    keywordstyle=\color{black},
+    commentstyle=\color{black},
+    stringstyle=\color{black},
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=2,
+    captionpos=b,
+    xleftmargin=0pt
+}
+\lstdefinestyle{verilogStyle2}{
+    language=Verilog,
+    basicstyle=\tiny\ttfamily,
+    keywordstyle=\color{black},
+    commentstyle=\color{black},
+    stringstyle=\color{black},
+    showstringspaces=false,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=2,
+    captionpos=b,
+    xleftmargin=0pt
+}
+
+% Set default style to Verilog
+\lstset{style=verilogStyle}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{placeins}
+\usepackage{algpseudocode}
+
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+
+\title{MatPlotLib and Random Cheat Sheet}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+\newcommand{\topscore}{Top$^{\text{score}}$}
+\advance\topmargin-.8in
+\advance\textheight3in
+\advance\textwidth3in
+\advance\oddsidemargin-1.5in
+\advance\evensidemargin-1.5in
+\parindent0pt
+\parskip2pt
+\newcommand{\hr}{\centerline{\rule{3.5in}{1pt}}}
+%\colorbox[HTML]{e4e4e4}{\makebox[\textwidth-2\fboxsep][l]{texto}
+\begin{document}
+
+% \begin{center}{\huge{\textbf{MatplotLib and Random Cheat Sheet}}}\\
+% {\large By Michelle Cristina de Sousa Baltazar}
+% \end{center}
+\begin{multicols*}{3}
+
+\tikzstyle{mybox} = [draw=black, fill=white, very thick,
+    rectangle, rounded corners, inner sep=10pt, inner ysep=10pt]
+\tikzstyle{fancytitle} =[fill=black, text=white, font=\bfseries]
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-10pt}
+    % text
+    \begin{align*}
+        &(A\cap B)'=A'\cup B'\\
+        &(A\cup B)'=A'\cap B'\\
+        &nPr=\frac{n!}{(n-r)!}\hspace{5pt}\boxed{\rm Permutation}\\
+        &\begin{pmatrix}
+            n\\
+            n_1,\dots n_m
+        \end{pmatrix}=\frac{n!}{n_1!n_2! \cdots n_m!} \hspace{5pt}\boxed{\rm Identical;\;partitions}\\
+        &nCr=\begin{pmatrix}n\\r
+        \end{pmatrix}=\frac{n!}{r!(n-r)!}\hspace{5pt}\boxed{\rm Combination}\\
+        &P(A\cup B)=P(A)+P(B)-P(A\cap B)\hspace{5pt}\boxed{\rm Additive}\\
+        &P(B|A)=\frac{P(A\cap B)}{P(A)}=\frac{P(A|B)P(B)}{P(A)}\hspace{5pt}\boxed{\rm Conditional}\\
+        &P(B|A)=P(B)\hspace{5pt}\boxed{\rm Independence}\\
+        &P(A)=\sum_{i=1}^kP(A\cap B_i)\hspace{5pt}\boxed{\rm Total}\\
+        &P(B|A)=\frac{P(B)P(A|B)}{\sum_{i=1}^kP(C_i)P(A|C_i)}\hspace{5pt}\boxed{\rm Bayes\;total}
+    \end{align*}
+    \end{minipage}
+    \vspace{-5pt}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Basics};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-10pt}
+    % text
+    \begin{align*}
+        &\int_{-\infty}^\infty f(x){\rm dx} = 1\hspace{5pt}\boxed{\rm PDF}\\
+        &F(x)=P(X\leq x)=\sum_{t\leq x}f(t)=\int_{-\infty}^xf(t){\rm dt}\hspace{5pt}\boxed{\rm CDF}\\
+        &P(a<X\leq b)=F(b)-F(a)\hspace{5pt}\boxed{\rm CDF\;cont.}\\
+        &P(X,Y)=\iint f(x,y){\rm dxdy}\\
+        &g(x)=\int_{-\infty}^\infty f(x,y){\rm dy}\\
+        &f(x|y)=\frac{f(x,y)}{g(y)}\\
+        &P(a\leq X\leq b|Y=c)=\int_a^b f(x|Y=c){\rm dx}\\
+        &f(x,y)=f(x)f(y)\hspace{5pt}\boxed{\rm Independence}\\
+        &E[z(X)]=\int_{-\infty}^\infty z(x)f(x){\rm dx}\\
+        &E[z(X,Y)]=\int_{-\infty}^\infty\int_{-\infty}^\infty z(x,y)f(x,y){\rm dxdy}\\
+        &\sigma_{XY}=E[(X-\mu_X)(Y-\mu_Y)]=E[XY]-\mu_X\mu_Y
+    \end{align*}
+    \end{minipage}
+    \vspace{-5pt}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Distribution Functions};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-10pt}
+    % text
+    \begin{align*}
+        &-1\leq\rho_{XY}=\frac{\sigma_{XY}}{\sigma_X\sigma_Y}\leq1\hspace{5pt}\boxed{\rm Correlation\;coeff.}\\
+        &P(\mu-k\sigma<X<\mu+k\sigma)\geq1-\frac{1}{k^2}\hspace{5pt}\boxed{\rm Chebyshev}\\
+        &\sigma^2=E[(X-\mu)^2]=E[x^2]-\mu^2\\
+        &\sigma^2_{aX+bY+c}=a^2\sigma_X^2+b^2\sigma_Y^2+2ab\sigma_{XY}\\
+        &E[XY]=E[X]E[Y]\hspace{5pt}\boxed{\rm Independence}\\
+        &E[\alpha X+b\alpha Y]=\alpha E[X]+\beta E[Y]\hspace{5pt}\boxed{\rm Any\;case}\\
+        &E[X]= \int_{-\infty}^\infty xg(x)dx;\hspace{5pt} g(x) = \int_{-\infty}^\infty f(x,y)dy
+    \end{align*}
+    \end{minipage}
+    \vspace{-5pt}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Distribution Functions contd.};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-10pt}
+    % text
+    \begin{align*}
+        &\text{\textbf{Binomial}: 2 outcomes, }b(x;n,p)=\begin{pmatrix}n\\x\end{pmatrix}p^xq^{n-x}\\
+        &\mu_b=np;\;\sigma_b^2=np(1-p)\\
+        &\text{\textbf{Multinomial}: $m$ outcomes}\\
+        &f(x_1,\dots x_m;p_1,\dots p_m,n)=\begin{pmatrix}n\\x_1,\dots x_m\end{pmatrix}\prod_{i=1}^mp_i^{x_i}\\
+        &\mu_{m,i}=np_i;\;\sigma_{m,i}^2=np_i(1-p_i)\\
+        &\text{\textbf{Hypergeometric}: trials with replacement}\\
+        &N{\rm\;total,\;}n{\;\rm samples},\;K{\rm\; total\;success},\;x{\rm\; success}\\
+        &h(x;N,n,k)=\frac{\begin{pmatrix}k\\x\end{pmatrix}\begin{pmatrix}N-k\\n-x\end{pmatrix}}{\begin{pmatrix}N\\n\end{pmatrix}}\\
+        &\mu_h=\frac{nk}{N};\;\sigma_h^2=\frac{N-n}{N-1}\cdot n\cdot \frac{k}{N}\left(1-\frac{k}{N}\right)\\
+        &\text{\textbf{Negative Binomial}: $k^{\rm th}$ result on $n^{\rm th}$ trial}\\
+        &b^\star(x;k,p)=\begin{pmatrix}x-1\\k-1\end{pmatrix}p^kq^{x-k}\hspace{5pt}\forall x\geq k\\
+        &\mu_{b^\star}=\frac{k}{p};\;\sigma_{b^\star}^2=\frac{k(1-p)}{p^2}\\
+        &\text{\textbf{Geometric}: bernoulli trials, first success}\\
+        &g(x;p)=p(1-p)^{x-1}\hspace{5pt}\forall x\geq1;\;\mu_g=\frac{1}{p};\;\sigma_g^2=\frac{1-p}{p^2}\\
+        &\text{\textbf{Poisson}: }p(x;\lambda t)=\frac{\exp{-\lambda t}(\lambda t)^x}{x!}\hspace{5pt}\forall x\geq0\\
+        &\mu_p=\lambda t;\;\sigma_p^2=\lambda t;\;\lambda:{\rm avg\;occurance\;per\;interval}
+    \end{align*}
+    \end{minipage}
+    \vspace{-5pt}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Common Distributions};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-15pt}
+    \begin{align*}
+        &\text{\textbf{Uniform}: }f(x; A,B) =\begin{cases}
+            \frac{1}{B-A},\;A\leq x\leq B\\
+            0,\;{\rm otherwise}
+        \end{cases}\\
+        &\mu=\frac{A+B}{2};\;\sigma^2=\frac{(B-A)^2}{12}\\
+        &\text{\textbf{Normal}: }n(x;\mu,\sigma) = \frac{1}{\sqrt{2\pi}\sigma}\exp{-\frac{(x-\mu)^2}{2\sigma^2}}\\
+        % &\int_{-\infty}^\infty n(x;\mu,\sigma) = 1\\
+         &\text{\textbf{Standard Normal}: }\mu = 0;\;\sigma = 1;\;z=\frac{x - \mu}{\sigma}\\
+         &\phi(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x  \exp{\left(\frac{-t^2}{2}\right)}dt\hspace{5pt}\boxed{\rm CDF\;of\;normal}\\
+         &\text{\textbf{Normal Approximation of Binomial}: }\\
+         &Z_i=\frac{X+\alpha-np}{\sqrt{np(1-p)}};\;\lim_{n\rightarrow\infty}Z=n(x;0,1);\;\boxed{np,nq\geq5}\\
+         % &P(x_l\leq X\leq x_u)=P(\underbrace{Z_{il}}_{\alpha=-0.5}\leq Z\leq \underbrace{Z_{iu}}_{\alpha=0.5})\\
+         &\text{\textbf{Gamma}: }\Gamma(n)=(n-1)!=\int_0^\infty x^{\alpha-1}e^{-x}{\rm dx}\\
+         &f(x;\alpha,\beta)=\begin{cases}\frac{1}{\beta^\alpha\Gamma(\alpha)}x^{\alpha-1}\exp{\left(-\frac{x}{\beta}\right)},\;x>0\\0,\;{\rm otherwise}\end{cases}\\
+         &\mu = \alpha\beta;\;\sigma^2 = \alpha\beta^2;\;\Gamma(\frac{1}{2})=\sqrt{\pi};\;\alpha= \frac{1}{2}\\
+         &\text{\textbf{Exponential}: }f(x;\beta)=\begin{cases}\frac{1}{\beta}\exp{-\frac{x}{\beta}},\;x\geq0\\0,\;{\rm otherwise}\end{cases}\\ 
+         & \mu = \beta;\; \sigma^2 = \beta^2.\;\text{Connection w/Poisson: next event}\\
+         &\text{\textbf{memoryless}, next event in }\beta=1/r,{\rm\;given}\;\lambda=rt\\
+         &\text{\textbf{Chi-squared}: prob. of unknown $\sigma^2$ ($S^2$) ranges}\\
+         &f(x;v)=\begin{cases}\frac{1}{2^{v/2}\Gamma(v/2)}x^{v/2-1}\exp{\left(-\frac{x}{2}\right)},\;x>0\\0,\;{\rm otherwise}\end{cases}\\
+         &v=n-1;\; \alpha= \frac{v}{2};\; \beta = 2;\; \mu = v;\; \sigma^2 = 2v\\
+         &t-\text{\textbf{distribution}: $\sigma^2$ unknown, dof $>30\rightarrow$ use $Z$}\\
+         &h(t)=\frac{\Gamma[(v+1)/2]}{\Gamma[v/2]\sqrt{\pi v}}\left(1+\frac{t^2}{v}\right)^{-\frac{v-1}{2}},\;\sigma_t^2=\frac{v}{v-2}\\
+         &-t_\alpha,z_\alpha: \text{area to left ($Z/t\leq\alpha$)};\;t_\alpha:\text{area to right}\\
+         &f-\text{\textbf{distribution}: 2 dofs}\\
+         &h(f) = \begin{cases}\frac{\Gamma[\frac{v_1+v_2}{2}](\frac{v_1}{v_2})^{\frac{v_1}{2}}f^{\frac{v_1}{2}-1}}{\Gamma[v_1/2]\Gamma[v_2/2]\left(1+\frac{v_1f}{v_2}\right)^{\frac{v_1+v_2}{2}}},\; f > 0 \\ 0,\; f \leq 0 \end{cases}\\
+         &\mu_t=0,\;\mu=\frac{v_2}{v_2-2},\;\sigma^2=\frac{2v_2^2 (v_1 + v_1 - 2)}{v_1 (v_2 - 2)^2 (v_2 - 4)}
+    \end{align*}
+    \end{minipage}
+    \vspace{-10pt}
+};
+\node[fancytitle, right=10pt] at (box.north west) {More distributions};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+\newpage
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-5pt}
+    % text
+    \begin{align*}
+        &X=f(x),Y=u(X)\rightarrow g(y)=f(u^{-1}(y))\left|\frac{du^{-1}(y)}{dy}\right|\\
+        &r^{\rm th}\text{ \textbf{Moment about the origin}: }\left(\mu=\mu_1'\right)\\
+        &\mu_r'=E[X^r]=\sum_xx^rf(x)=\int_{-\infty}^\infty x^rf(x){\rm dx}\\
+        &\text{\textbf{Moment-generating function}: }M_X(t)=E[e^{tX}]\\
+        &\mu_r'=\frac{d^rM_X(t)}{dt^r}\Bigg|_{t=0}\hspace{5pt}\boxed{\rm all\;cases}\\
+        &M_X(t)=\exp{\left(\mu t+\frac{t^2\sigma^2}{2}\right)}\hspace{5pt}\boxed{\rm all\;cases}\\
+        &\text{\textbf{Lin. Comb.}: }Y=aX,P(X)=f(x),P(Y)=h(y)\\
+        &h(y)=f(y/a)\hspace{5pt}\boxed{\rm discrete};=\frac{1}{|a|}f(y/a)\hspace{5pt}\boxed{\rm continuous}\\
+        &M_X(at)=M_Y(t)=M_{aX}(t)\hspace{5pt}\boxed{\rm all\;cases}\\
+        &\text{\textbf{Convolution}: }Z=X+Y\\
+        &h(z)=\int_{-\infty}^\infty f(w)g(z-w){\rm dw}\hspace{5pt}\boxed{\rm all\;cases}\\
+        &M_{aX+bY}=M_X(at)M_Y(bt)\hspace{5pt}\boxed{\rm all\;cases}\\
+        &\text{\textbf{Change of Base}: }Z=X+Y,U=X(Z,Y)=X\\
+        &\textbf{J}=\begin{vmatrix}\frac{\partial x}{\partial z} & \frac{\partial x}{\partial u}\\ \frac{\partial y}{\partial z} & \frac{\partial y}{\partial u}\end{vmatrix},g(z,u)=f(x,y)|\textbf{J}|=f(u,z-u)|\textbf{J}|\\
+        &h(z)=\int_Ug(z,u){\rm du}\hspace{5pt}\boxed{\rm all\;cases}\\
+        &\text{\textbf{Piecewise Case}: }g(y)=\sum^m_{i=1}f(x_i)|\textbf{J}_i|
+    \end{align*}
+    \end{minipage}
+    \vspace{-5pt}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Functions of RVs};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-10pt}
+    % text
+    \begin{align*}
+        &\text{\textbf{Sample variance}: lower = more efficient estimator}\\
+        &S^2=\frac{\sum_{i=1}^n(X_i-\Bar{X})^2}{n-1}=\frac{ n\sum_{i=1}^n X_i^2 -\left( \sum_{i=1}^n {X_i} \right) ^2}{n(n-1)};\\
+        &\;E(S^2)=\sigma^2\hspace{5pt}\boxed{\rm unbiased}\\
+        &\text{\textbf{Central Limit Theorem}: }(\sigma_{\Bar{X}}=\sigma/\sqrt{n})\\
+        &\lim_{n\rightarrow\infty}X_n=n(x;\mu,\sigma);\;P(\Bar{X}<\xi)=\dots\\
+        &P\Bigg(\underbrace{\frac{\Bar{X}-\mu}{\sigma/\sqrt{n}}}_{Z}<\frac{\xi-\mu}{\sigma/\sqrt{n}}\Bigg)=P\left(Z_{n}<\frac{\xi-\mu}{\sigma/\sqrt{n}}\right)
+    \end{align*}
+    \end{minipage}
+    \vspace{-7pt}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Sampling};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-10pt}
+    % text
+    \begin{align*}
+        &P(|\Bar{X}-\alpha|\geq\beta)=P(\Bar{X}-\alpha>\beta)+P(\Bar{X}-\alpha<\beta)\\
+        &\text{\textbf{CLT wrt $t-$distribution}: }T=\frac{\Bar{X}-\mu}{S/\sqrt{n}},v=n-1\\
+        &\text{\textbf{CLT wrt $f-$distribution}: }F=\frac{S_1^2/\sigma_1^2}{S_2^2/\sigma_2^2},v_i=n_i-1
+    \end{align*}
+    \end{minipage}
+    \vspace{-5pt}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Sampling Contd.};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-10pt}
+    % text
+    \begin{align*}
+        &\text{Sample }x_1\dots x_n.\;q(f):\;{\rm fraction}\;f\;{\rm of\;data}\leq q(f)\\
+        &\text{\textbf{Sketching}: for $i\in 1,\dots n$ plot}\left(\frac{i-3/8}{n+1/4},x_i\right)\\
+        &q(\alpha):\text{ $\alpha\cdot100 th$ percentile},\;q(0.5)={\rm median}\\
+        &{\rm \textbf{CDF}\;}F(x):\;q(x)=F^{-1}(x)({\rm if\;}F{\rm \;cont.\;\&\;inc.})
+    \end{align*}
+    \end{minipage}
+    \vspace{-5pt}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Quantile Plots};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-10pt}
+    % text
+    \begin{align*}
+        &\text{\textbf{Unbiased estimator}: }E[\hat{\Theta}]=\theta,E[\Bar{X}]=\mu\\
+        &\text{\textbf{Prediction interval}: }100(1-\alpha)\%\text{ chance for }\mu\in I\\
+        &\text{\textbf{2-sided interval}: }\alpha\implies(1-\alpha)\cdot100\%{\rm\; confidence}\\
+        &1-\alpha=P\left(\underbrace{\Bar{X}-z_{\alpha/2}\frac{\sigma}{\sqrt{n}}}_{\Theta_L=\Bar{X_L},{\rm lower\;limit}}\leq\mu\leq\underbrace{\Bar{X}+z_{\alpha/2}\frac{\sigma}{\sqrt{n}}}_{\rm upper\;limit}\right)\\
+        &\text{\textbf{1-sided interval}: }1-\alpha=P(Z\leq z_\alpha=-\Phi^{-1}(\alpha))\\
+        &\Bar{X}_{U,L}=\Bar{X}\pm z_\alpha\frac{\sigma}{\sqrt{n}}\\
+        &\text{\textbf{Unknown} $\sigma$: use $t-$distribution CLT}\\
+        &1-\alpha=P\left({\Bar{X}-t_{\alpha/2}\frac{S}{\sqrt{n}}}\leq\mu\leq{\Bar{X}+\underbrace{t_{\alpha/2}\frac{S}{\sqrt{n}}}_{\rm standard\;error}}\right)\\
+        &P(t>-\alpha)=1-P(t>\alpha)\hspace{5pt}\boxed{t-{\rm dist.\;property}}\\
+        &\text{\textbf{$m$ Normal samples}: }X_1,\dots X_m;{\rm\;with\;}\sigma_1,\dots\sigma_m\\
+        &Z=\frac{\overbrace{X_0-\Bar{X}}^{\text{pt estimate err}}}{\sigma\sqrt{1+1/n}},\sigma^2_{\rm err}=\sigma^2+\sigma^2/n\\ 
+        &\text{\textbf{Prediction interval}: }x_0\notin I_{\rm prediction}\implies\text{ outlier}\\
+        &100(1-\alpha)\%\text{ chance for }x_0\text{ (next observation) }\in I\\
+        &\Bar{x}-z_{\alpha/2}\sigma\sqrt{1+1/n}\leq x_0\leq \Bar{x}+z_{\alpha/2}\sigma\sqrt{1+1/n}
+    \end{align*}
+    \end{minipage}
+    \vspace{-5pt}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Estimation};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-10pt}
+    % text
+    \begin{align*}
+        &\text{If $\sigma$ unknown/1 side instead of 2, same drill (PI)}\\
+        &\text{\textbf{$S$ Intervals}: }\chi^2=\frac{(n-1)S^2}{\sigma^2},v=n-1{\rm (if}\;\mu{\;\rm known})\\
+        &\text{\textbf{Tolerance limits}: }\\
+        &100(1-\alpha)\%\text{ of all measurements will be }\in\Bar{x}\pm ks\\
+        &1-\gamma {\;\rm tol.\;limit\;st}\lim_{n\rightarrow\infty} P(-kS\leq X\leq kS)=1-\alpha\\
+        &\gamma:\text{ how much smtg exceeds val}\\
+        &\text{\textbf{Two samples}: sampling distribution normal with: }\\
+        &{\rm mean\;}\mu_1-\mu_2;\;{\rm variance}\;\sigma_1^2/n_1+\sigma_2^2/n_2\\
+        &\text{Statistic: }Z = \frac{(\Bar{X_1} - \Bar{X_2}) - (\mu_1 - \mu_2)}{\sqrt{\sigma_1 ^2 / n_1 + \sigma_2 ^2 / n_2}}\\
+        &1-\alpha=P\Big(\Bar{X}_1-\Bar{X}_2-z_{\alpha/2}\sqrt{\sigma_1 ^2 / n_1 + \sigma_2 ^2 / n_2}\dots\\
+        &\leq\mu_1-\mu_2\leq\Bar{X}_2-\Bar{X}_2+z_{\alpha/2}\sqrt{\sigma_1 ^2 / n_1 + \sigma_2 ^2 / n_2}\Big)\\
+        &\text{\textbf{Unknown same $\sigma$}: } \\
+        & S_{\rm pooled}^2 =\frac{(n_1-1)S_1^2+(n_2-1)S_2^2}{n_1+n_2-2}\\
+        &T=\frac{(\Bar{X_1} - \Bar{X_2}) - (\mu_1 - \mu_2)}{S_p^2\sqrt{1/n_1+1/n_2}},v=n_1+n_2-2\\
+        &\text{\textbf{Unknown diff. $\sigma$}: }T=\frac{(\Bar{X_1} - \Bar{X_2}) - (\mu_1 - \mu_2)}{\sqrt{S_1 ^2 / n_1 + S_2 ^2 / n_2}}\\
+        &v=\frac{(s_1^2/n_1+s_2^2/n_2)^2}{(s_1^2/n_1)^2/(n_1-1)+(s_2^2/n_2)^2/(n_2-1)}\\
+        &\text{\textbf{Paired observation: }Two samples same $n$ not IID}\\
+        &(X_i,Y_i),i=1,\dots n,D_i=X_i-Y_i\\
+        &var(D_i)=var(X_i-Y_i)=\sigma_X^2+\sigma_Y^2-2cov(X_i,Y_i)\\
+        &\text{\textbf{Estimating proportion}: } X:\text{success no., }p:{\rm prob.}\\
+        &\Hat{P}=X/n,\mu_{\Hat{P}} =p,\sigma^2_{\Hat{P}}=\frac{p(1-p)}{n},Z=\frac{\Hat{P}-p}{\sqrt{p(1-p)/n}}\\
+        &P\left(\Hat{P}-z_{\alpha/2}\sqrt{\frac{\Hat{p}(1-\Hat{p})}{n}}\leq p\leq\Hat{P}+z_{\alpha/2}\sqrt{\frac{\Hat{p}(1-\Hat{p})}{n}}\right)\\
+        &=1-\alpha;\text{ if $n$ large, replace $p\iff\Hat{p}=x/n$}\\
+        &\text{\textbf{Sample size for error $\delta$}: }|\delta|<1\\
+        &n \geq \frac{z_{\alpha / 2}^2 \Hat{p}(1-\Hat{p})}{\delta ^2\;} {\rm or\;} n \geq \frac{z_{\alpha/2}^2}{4\delta ^2}\Bigg|_{\Hat{p}(1-\Hat{p})<1/4}
+    \end{align*}
+    \end{minipage}
+    \vspace{-5pt}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Estimations Contd.};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+
+\newpage
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-5pt}
+    % text
+    \begin{align*}
+        &\text{\textbf{Difference of two binomial parameters}: }\\
+        &\Bigg(\Hat{p}_1-\Hat{p}_2-z_{\alpha/2}\sqrt{\frac{\Hat{p}_1(1-\Hat{p}_1)}{n_1}+\frac{\Hat{p}_2(1-\Hat{p}_2)}{n_2}}\leq p_1-p_2\\
+        &\leq\Hat{p}_1-\Hat{p}_2+z_{\alpha/2}\sqrt{\frac{\Hat{p}_1(1-\Hat{p}_1)}{n_1}+\frac{\Hat{p}_2(1-\Hat{p}_2)}{n_2}}\Bigg)\\
+        &\text{\textbf{Estimating Variance}: statistic }W^2=\frac{S^2(n-1)}{\sigma^2}\\
+        &W{\rm\;follows\;}\chi^2{\rm\;distribution\;with\;}v=n-1.\\
+        &{\rm Confidence\;Interval:}1-\alpha=\left(\chi^2_{\alpha/2}\leq W^2\leq\chi^2_{1-\alpha/2}\right)\\
+        &1-\alpha=\left(\frac{S^2(n-1)}{\chi^2_{\alpha/2}}\leq\sigma^2\leq\frac{S^2(n-1)}{\chi^2_{1-\alpha/2}}\right)\\
+        &\sigma^2\chi^2_{n-1}=\sum^n(X_i-\Bar{X})^2\hspace{5pt}\boxed{\text{for estimating variance}}\\
+        &\text{\textbf{Likelihood function}: IID sample }x_1\dots x_n,\text{ joint}\\
+        &\text{PMF with parameter vector }\theta.\;L(x_1\dots x_n;\theta)=\\
+        &f(x_1\dots x_n;\theta)=\prod_{i=1}^n g(x_i;\theta)\\
+        &\ln\left(\prod_{i=1}^n gk\right)=\sum_{i=1}^n\ln g+\sum_{i=1}^n\ln k\\
+        &\text{\textbf{Max likelihood estimator}:}\\
+        &\hat{\theta}=\max_\theta L(x_1\dots x_n;\theta)\\
+        &\text{\textbf{Log likelihood}: if exponentials hard to}\\
+        &\text{optimize, take the log and solve }\frac{\partial(\ln L)}{\partial\theta}=0\\
+        &{\rm var}({\hat{\sigma}^2})>{\rm var}({s^2})\hspace{5pt}\boxed{\text{for normal dist.}}
+    \end{align*}
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Estimation Cond.};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-5pt}
+    % text
+    \begin{align*}
+        &\text{Ground truth: }I_{\rm crit}=[a, b];\\
+        &\alpha=P(\Bar{X}<a)+P(\Bar{X}>b);\;\beta=P(a<\Bar{X}<b)\\
+        &\text{\textbf{Using standard normal to estimate binomial}: }\\
+        &P\Bigg(\underbrace{\frac{\Bar{X}-\mu}{\sigma}}_{Z}<\frac{\xi\pm\delta-\mu}{\sigma}\Bigg)=P\left(Z_{n}<\frac{\xi\pm\delta-\mu}{\sigma}\right)\\
+        &\text{with }\mu=np,\;\sigma=\sqrt{npq}
+    \end{align*}
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Hypothesis Testing};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-5pt}
+    % text
+    \begin{align*}
+        &\text{\textbf{Using std. normal to estimate sample mean}: }\\
+        &P\Bigg(\underbrace{\frac{\Bar{X}-\mu}{\sigma/\sqrt{n}}}_{Z}<\frac{\Bar{x}_i-\mu}{\sigma/\sqrt{n}}\Bigg)=P\left(Z_{n}<\frac{\Bar{x}_i-\mu}{\sigma/\sqrt{n}}\right)\\
+        &\textbf{Type\;1}:\;(H_0:\;\mu=\xi;\;\underline{H_1:\;\mu<{\rm or}>\xi})\\
+        &\text{Accept $H_1$ if $P\left({z<\frac{\Bar{x}-\mu_0}{\sigma/\sqrt{n}}}\right)<\alpha_{\rm sig}$ else $H_0$}\\
+        &\textbf{Type\;2}:\;(\underline{H_0:\;\mu=\xi};\;H_1:\;\mu<>\xi)\\
+        &\text{Accept $H_0$ if $\mu-z_{\alpha/2}\frac{\sigma}{\sqrt{n}}<\Bar{x}<\mu-z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$ else $H_1$}\\
+        &\text{One vs two-tailed: }H_1:\theta<\;{\rm or\;}>\theta_0\;{\rm vs}.\;\theta\neq\theta_0\\
+        &\text{\textbf{P-value:} observing smtg more extreme than }H_0\\
+        &P=2P\left(z>\frac{\Bar{x}-\mu_0}{\sigma/\sqrt{n}}\right)=2P\left(1-\left(z<\frac{\Bar{x}-\mu_0}{\sigma/\sqrt{n}}\right)\right)\\
+        &\text{2-tailed: if }\frac{\Bar{x}-\mu_0}{\sigma/\sqrt{n}}\in[-z_{\alpha/2},z_{\alpha/2}]\text{ accept }H_0\text{ else }H_1\\
+        &\text{Crit region outside this interval, if stat is in reject}\\
+        &\text{1-tailed: }P=P\left(z>\frac{\Bar{x}-\mu_0}{\sigma/\sqrt{n}}\right),\\
+        &\text{ reject $H_0$ if $\frac{\Bar{x}-\mu_0}{\sigma/\sqrt{n}}<\text{ or }>\pm z_\alpha$ (if in crit region)}\\
+        &\text{Check for mistake: If P-value small, $H_0$ unlikely}\\
+        &\text{Like always, use $t-$\textbf{distribution when }$\sigma$ unknown,}\\
+        &\text{i.e. use }t=\frac{\Bar{x}-\mu_0}{s/\sqrt{n}}\propto t_{n-1}\hspace{5pt}\boxed{t>\varsigma=t<-\varsigma}\\
+        &\text{\textbf{Hypotheses for paired observations: }same}\\
+        &\text{concept, use the $z,t$ statistics for two means} \\
+        &\mu_d=,\neq,>,<\Delta\Bar{x}_i\\
+        &\text{\textbf{Hypotheses for variance: }use } \chi^2=\frac{S^2(n-1)}{\sigma_0^2}\\
+        &\text{$P$ value, crit region same},\;\sigma^2=,\neq,>,<\sigma_0^2\\
+        &\text{\textbf{Hypotheses for two variances: }}\sigma_1^2=,\neq,>,<\sigma_2^2\\
+        &{\rm Statistic:\;}f=\frac{s_1^2}{s_2^2};\;v_1=n_1-1,\;v_2=n_2-1\\
+        &f_{1-\alpha}(v_1,v_2)=\frac{1}{f_\alpha(v_2,v_1)}\text{ everything same, just no $P$}\\
+        &f\in[f_{1-\alpha/2},\;f_{\alpha/2}]:\text{ fail to reject}H_0\\
+        &{\rm \bf Crit\;region:\;}f>f_{\alpha/2},\;f<f_{1-\alpha}
+    \end{align*}
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Hypothesis Testing Contd.};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+     \begin{minipage}{0.3\textwidth}
+     \lstset{style=assembly}
+     \vspace{-5pt}
+     \begin{align*}
+        &\text{\textbf{Goodness of fit}: }\chi^2=\sum_{i=1}^k\frac{(O_i-e_i)^2}{e_i},\;v=k-1\\
+        &e_i:\text{ expected frequencies; }o_i:\text{ observed frequencies}\\
+        &\text{Small }\chi^2:\text{ good fit. Crit region: right tail}\\
+        &\chi^2>\chi_\alpha^2:\text{ crit region for rejection}\\
+        &\text{\textbf{Linear fit}: }Y=\beta_0+\beta_1x+\epsilon\hspace{5pt}\boxed{\rm Model}\\
+        &E(\epsilon)=0,\;{\rm Var}(\epsilon)=\epsilon^2\implies{\rm \boxed{\rm homoscedasticity}}\\
+        &\Hat{y}=b_0+b_1x\hspace{5pt}\boxed{\rm Fitted\;line}\;e_i=y_i-\Hat{y}_i\hspace{5pt}\boxed{\rm Residual}\\
+        &y_i=b_0+b_1x_i+e_i,\;\text{small }e_i\implies{\rm \;good\;fit}\\
+        &\text{\textbf{Minimize }$SSE$, minimum if convex in $b_0,\;b_1$}\\
+        &SSE=\sum_{i=1}^ne_i^2=\sum_{i=1}^2(y_i-b_0-b_1x_i)^2,\;\frac{\partial SSE}{\partial b_0,\;b_1}=0\\
+        &nb_0+b_1\sum_{i=1}^nx_i=\sum_{i=1}^ny_i\implies b_0=\Bar{y}-b_1\Bar{x}\hspace{5pt}\boxed{\rm Intercept}\\
+        &b_0\sum_{i=1}^nx_i+b_1\sum_{i=1}^nx_i^2=\sum_{i=1}^nx_iy_i\\
+        &b_1=\frac{\sum_{i=1}^n(x_i-\Bar{x})(y_i-\Bar{y})}{\sum_{i=1}^n(x_i-\Bar{x})^2}=\frac{\bar{xy}-\bar{x}\bar{y}}{\bar{x^2}-\bar{x}^2}\hspace{5pt}\boxed{\rm Slope}\\
+        &b_1=\frac{n\sum_{i=1}^nx_iy_i-\left(\sum_{i=1}^nx_i\right)\sum_{i=1}^ny_i}{n\sum_{i=1}^nx_i^2-\left(\sum_{i=1}^nx_i\right)^2}\hspace{5pt}\boxed{\rm Slope}\\
+        &b_0=\frac{\sum_{i=1}^ny_i-b_1\sum_{i=1}^nx_i}{n}\hspace{5pt}\boxed{\rm Intercept}\\
+        &\mu_{B_1}=\frac{\sum_{i=1}^n(x_i-\Bar{x})(\beta_0+\beta_1x_i)}{\sum_{i=1}^n(x-\Bar{x})^2}=\beta_1\\
+        &{\rm Var}(B_1)=\frac{\sum_{i=1}^n(x_i-\Bar{x})^2\sigma_{Y_i}^2}{\left(\sum_{i=1}^n(x_i-\Bar{x})^2\right)^2}=\frac{\sigma^2}{\sum_{i=1}^n(x_i-\Bar{x})^2}\\
+        &\mu_{B_0}=\beta_0,\;{\rm Var}(B_0)=\sigma^2\left(\frac{\sum_{i=1}^nx_i^2}{n\sum_{i=1}^n(x_i-\Bar{x})^2}\right)\\
+        &\text{\textbf{Sum of errors:} }
+        % S_{xx} = \sum_{i=1}^{n} (x_i - \bar{x})^2=n\bar{x^2}-n\bar{x}^2\\
+        S_{xx} = \sum_{i=1}^{n} (x_i - \bar{x})^2=\sum_{i=1}^nx_i^2-n\bar{x}^2\\
+        &S_{yy} = \sum_{i=1}^{n} (y_i - \bar{y})^2=\sum_{i=1}^ny_i^2-n\bar{y}^2\\
+        &S_{xy} = \sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})=\sum_{i=1}^nx_iy_i-n\bar{x}\bar{y}
+    \end{align*}
+    \end{minipage}
+ };
+ \node[fancytitle, right=10pt] at (box.north west) {Linear Regression};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+     \begin{minipage}{0.3\textwidth}
+     \lstset{style=assembly}
+     \vspace{-5pt}
+     \begin{align*}
+        &SSE=\sum_{i=1}^n(y_i-b_0-b_1x_i)^2=S_{yy}-b_1S_{xy};\;b_1=\frac{S_{xy}}{S_{xx}}\\
+        &s^2=\frac{SSE}{n-2}=\frac{\sum_{i=1}^n(y_i-\Hat{y}_i)^2}{n-2}=\frac{S_{yy}-b_1S_{xy}}{n-2}\\
+        &\text{\textbf{Confidence interval for slope}: }T=\frac{B_1-\beta_1}{S/\sqrt{S_{xx}}}\\
+        &\text{For the regression line }\mu_{Y|x}=\beta_0+\beta_1x:\\
+        &b_1-t_{\alpha/2}\frac{s}{\sqrt{S_{xx}}}\leq\beta_1\leq b_1+t_{\alpha/2}\frac{s}{\sqrt{S_{xx}}},\;v=n-2\\
+        &\text{\textbf{Hypotheses for slope}: }\beta_1=,\neq,>,<\beta_{1_0}\\
+        &\overbrace{t}^{\rm test\;stat.}=\frac{\overbrace{b_1}^{\rm estimated\;slope\;from\;sample}-\overbrace{\beta_{1_0}}^{{\rm slope\;under\;}H_0}}{\underbrace{s}_{\rm estimate\;of\;std.\;error}/\sqrt{\underbrace{S_{xx}}_{{\rm S.S.\;of\;deviations\;of}x-{\rm vals}}}}\\
+        &\text{\textbf{Confidence interval for intercept}: }\\
+        &b_0-t_{\alpha/2}\frac{s}{\sqrt{nS_{xx}}}\sqrt{\sum_{i=1}^nx_i^2}\leq\beta_0\leq\\
+        &b_0+t_{\alpha/2}\frac{s}{\sqrt{nS_{xx}}}\sqrt{\sum_{i=1}^nx_i^2},\;v=n-2\\
+        &\text{\textbf{Coefficient of Determination: }}\\
+        &R^2=1-\frac{\overbrace{SSE}^{{\sum_{i=1}^n(y_i-\Hat{y}_i)^2}}}{\underbrace{SST}_{{\rm total\;corrected\;sum\;of\;squares}=\sum_{i=1}^n(y-\Bar{y})^2}}\\
+        &\text{Represents how well the regression line approx. data}\\
+        &R^2=1\text{: perfect fit};\;R^2<<1\text{: fails to model data}
+    \end{align*}
+    \end{minipage}
+ };
+ \node[fancytitle, right=10pt] at (box.north west) {Linear Regression Contd.};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \textbf{Common values}:\\
+    \vspace{5pt}
+    \begin{tabular}{ccc|c|c|c}
+
+    \multicolumn{2}{c|}{two-tails} & $z_{0.05}$ & $z_{0.025}$ &  $z_{0.01}$& $z_{0.005}$ \\ \hline
+        \multicolumn{2}{c|}{cum. dis.} & $1.645$ & $1.960$ & $2.326$ & $2.576$ \\ 
+    \end{tabular}
+    \newline
+    \textbf{Continuity relationship}:\\
+    \text{Used to correct discrete dis., }$\delta=$\text{(last sigfig)}$/2$\\
+    \vspace{5pt}
+    \begin{tabular}{cccc}
+        $X<$& $X\leq$ &$X\geq$& $X>$\\
+        \hline
+        $-\delta$& $+\delta$& $-\delta$&$+\delta$\\
+    \end{tabular}\\
+    \vspace{5pt}
+    \textbf{$\chi^2,\;t,\;f-$distribution}: area to the right\\
+    \textbf{Normal distribution}: area to the left
+%     \newline
+%     $\alpha_{\rm default}=0.05$\\
+%     \vspace{5pt}
+%     \textbf{Weibull distribution:}\\
+%     $f(x; \lambda, k) = \begin{cases}
+%   \left( \frac{k}{\lambda} \right) \left( \frac{x}{\lambda} \right)^{k-1} \exp \left( -\left( \frac{x}{\lambda} \right)^k \right) & \text{if } x \geq 0, \\
+%   0 & \text{otherwise}.
+% \end{cases}
+% $
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Appendix};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------------------------------
+\begin{tikzpicture}
+\node [mybox] (box){%
+    \begin{minipage}{0.3\textwidth}
+    \lstset{style=assembly}
+    \vspace{-5pt}
+    % text
+    \begin{align*}
+        &\text{\textbf{Exponential memorylessness}: remaining lifetime }\\
+        &\text{of dist. independent of elapsed duration}\\
+        &P(X\geq s+t|X\geq s)=P(X\geq t)\\
+        &\text{\textbf{Approximating normal quantiles:} }(f_i,x_i)\\
+        &q_{\sigma,\;\mu}(f)=\mu+\sqrt{{\rm Var}(4.91\cdot(f^{0.14}-(1-f)^{0.14}))}
+    \end{align*}
+    \includegraphics[width=\linewidth]{Screenshot 2024-04-22 at 1.29.14 PM.png}
+    \end{minipage}
+};
+\node[fancytitle, right=10pt] at (box.north west) {Appendix Contd.};
+\end{tikzpicture}
+%----------------------------------------------------------------
+
+
+
+
+
+
+% %----------------------------------------------------------------
+% \begin{tikzpicture}
+% \node [mybox] (box){%
+%     \begin{minipage}{0.3\textwidth}
+%     \lstset{style=assembly}
+%     \vspace{-5pt}
+%     % text
+
+%     \end{minipage}
+% };
+% \node[fancytitle, right=10pt] at (box.north west) {};
+% \end{tikzpicture}
+% %----------------------------------------------------------------
+
+
+
+
+
+
+% %----------------------------------------------------------------
+% \begin{tikzpicture}
+% \node [mybox] (box){%
+%     \begin{minipage}{0.3\textwidth}
+%     \lstset{style=assembly}
+%     \vspace{-5pt}
+%     % text
+
+%     \end{minipage}
+% };
+% \node[fancytitle, right=10pt] at (box.north west) {};
+% \end{tikzpicture}
+% %----------------------------------------------------------------
+
+
+\end{multicols*}
+\end{document}

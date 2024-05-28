@@ -1,0 +1,398 @@
+\documentclass[10pt]{article}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{fullwidth}
+\usepackage{graphicx}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage[hidelinks, urlcolor=blue, linkcolor=blue, colorlinks=true]{hyperref} 
+
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+\newcommand{\bcent}{\begin{center}}
+\newcommand{\ecent}{\end{center}}
+\newcommand{\tb}{\textbf}
+\newcommand{\noin}{\noindent}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\bitem}{\begin{itemize}}
+\newcommand{\eitem}{\end{itemize}}
+\def\boxx#1{
+    \framebox{
+    \begin{tabular}{c}
+    \\[-1pt]
+    #1 \\
+    \\[-1pt]
+    \end{tabular}
+    }
+}
+
+%%% This command makes a framed box of a chosen height.
+\newcommand{\makenonemptybox}[2]{%
+\par\nobreak\vspace{\ht\strutbox}\noindent
+\setlength{\fboxrule}{0pt} % set this to 0pt to make invisible
+\fbox{%
+\parbox[c][#1][t]{\dimexpr\linewidth-2\fboxsep}{
+  \hrule width \hsize height 0pt
+  #2
+ }%
+}%
+}
+\makeatother    
+
+
+\begin{document}
+
+{\bcent\fontfamily{cmss}\selectfont
+\begin{tabular}{c}
+\textbf{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\textbf{{\color{red} Due}: 11:59pm EST, Sunday March 12, 2023}\\\hline
+\end{tabular}\ecent
+}
+
+{\fontfamily{cmss}\selectfont
+\large\bcent\tb{}\\
+\tb{}\\
+\vspace{0pt}
+%\tb{Term Test 1}\\
+
+\tb{\Large MAT185 Linear Algebra}\\
+
+\tb{Assignment 3}
+\ecent}
+
+
+
+\noin{\fontfamily{cmss}\selectfont\tb{\large Instructions:}} \\ %% Fairly standard and designed to save time; however, tweak as necessary.
+
+\noindent Please read the {\bf MAT185 Assignment Policies \& FAQ} document for details on submission policies, collaboration rules and academic integrity, and general instructions. 
+
+\benum
+
+
+\item {\bf Submissions are only accepted by} \href{https://www.gradescope.ca}{Gradescope}. Do not send anything by email.  Late submissions are not accepted under any circumstance. Remember you can resubmit anytime before the deadline. 
+
+\item  {\bf Submit solutions using only this template pdf}.  Your submission should be a single pdf with your full written solutions for each question. If your solution is not written using this template pdf (scanned print or digital) then your submission will not be assessed. Organize your work neatly in the space provided.  Do not submit rough work. 
+
+\item  {\bf Show your work and justify your steps} on every question but do not include extraneous information.  Put your final answer in the box provided, if necessary.  We recommend you write draft solutions on separate pages and afterwards write your polished solutions here on this template.
+
+\item  {\bf You must fill out and sign the academic integrity statement below}; otherwise, you will receive zero for this assignment. 
+
+
+\eenum
+
+\vspace{30pt}
+
+
+\noin{\fontfamily{cmss}\selectfont\tb{\large Academic Integrity Statement:}} \\
+
+%%% Student information
+
+% Student 1
+\fbox{
+\begin{minipage}{\textwidth}
+{
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily Full Name: Qiao Wang}
+
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily Student number: 1009027447}
+
+\vspace{0.1in}
+}
+\end{minipage}
+}
+
+\vspace*{0.1in}
+
+% Student 2
+\fbox{
+\begin{minipage}{\textwidth}
+{
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily Full Name: Justin Lim}
+
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily Student number: 1008879055}
+
+\vspace{0.1in}
+}
+\end{minipage}
+}
+~
+
+I confirm that:
+
+\begin{itemize} 
+	\item I have read and followed the policies described in the document {\bf MAT185 Assignment Policies \& FAQ}.
+	\item In particular, I have read and understand the rules for collaboration, and permitted resources on assignments as described in subsection II of the the aforementioned document. I have not violated these rules while completing and writing this assignment. 
+	\item I understand the consequences of violating the University's academic integrity policies as outlined in the \href{http://www.governingcouncil.utoronto.ca/policies/behaveac.htm}{Code of Behaviour on Academic Matters}. I have not violated them while completing and writing this assignment.
+\end{itemize}
+By signing this document, I agree that the statements above are true. 
+
+% You should sign this PDF after compiling. Do not write your signature using LaTeX.
+\vspace{0.2in}
+{\large 
+\makebox[\textwidth]{\sffamily Signatures: 1)\enspace\hrulefill} 
+
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily \hspace*{20mm} 2)\enspace\hrulefill} 
+
+}
+
+\vfill
+
+
+\pagebreak
+
+%%% Questions
+
+\noin{\bf 1.}  Let $V$ and $W$ be vector spaces and let $T:V\to W$ be a linear transformation. Suppose $A_1$ and $A_2$ are subspaces of $V$. \\
+
+\noin Read and then write a critique the following ''proof'' that $T(A_1 \cap A_2) = T(A_1) \cap T(A_2)$.  The proof consists of five lines, not including assumptions.  Your critique should identify, at a minimum,  which lines are not correct; where exactly the proof breaks down; and what exactly are the incorrect statements or deductions. \\
+
+\noin{\bf ''Proof''}:  \\
+
+\noin Suppose that ${\bf x}\in T(A_1\cap A_2)$.  \\
+
+\noin Line 1:  Then there exists a vector ${\bf y} \in A_1 \cap A_2$ such that $T{\bf y}={\bf x}$.  \\
+
+\noin Line 2: Since ${\bf y}\in A_1$ and ${\bf y}\in A_2$, we have $T{\bf y} \in T(A_1)$ and $T{\bf y} \in T(A_2)$, so that ${\bf x}\in T(A_1)\cap T(A_2)$. In other words, we have shown that $T(A_1 \cap A_2) \subseteq T(A_1) \cap T(A_2)$.\\
+
+\noin Now suppose that ${\bf x}\in T(A_1)\cap T(A_2)$.  \\
+
+\noin Line 3:  Then there exists a vector ${\bf y}\in A_1$ such that $T{\bf y}={\bf x}$ and there exists a ${\bf y}\in A_2$ such that $T{\bf y}={\bf x}$.  \\
+
+\noin Line 4: But, ${\bf y}\in A_1\cap A_2$ so that ${\bf x}\in T(A_1\cap A_2)$. In other words, we have shown that $ T(A_1) \cap T(A_2)\subseteq T(A_1 \cap A_2)$.\\
+
+\noin Line 5: Since we have shown both $T(A_1 \cap A_2) \subseteq T(A_1) \cap T(A_2)$, and $ T(A_1) \cap T(A_2)\subseteq T(A_1 \cap A_2)$ we have $T(A_1 \cap A_2) = T(A_1) \cap T(A_2)$.\\
+
+%Question 1
+
+{
+	\vspace*{-10pt}
+	%%% Do not change the height of this box. Your work must fit inside it.
+	
+	\makenonemptybox{350pt}{
+    \vspace{20pt}
+    \textbf{Critique:}\\
+    \vspace{0pt}
+    \begin{spacing}{1.5}
+    \centering
+    \underbar{Line 3} is not an incorrect statement by itself, but the ${\bf y}\in A_1$ and the ${\bf y}\in A_2$ does \textbf{not} mean that \\
+    ${\bf y}\in A_1\cap A_2$ imply ${\bf x}\in T(A_1\cap A_2)$ \\
+    which is stated in \underbar{line 4}, because there exists ${\bf x}=T{\bf y}'$ such that
+    \begin{align*}
+    &{\bf y}'\in A_1\text{ but not }A_2\text{, or} \\
+    &{\bf y}'\in A_2\text{ but not }A_1.
+    \end{align*}
+    Here in \underbar{line 4} is precisely where the proof breaks down. And hence, it is \textbf{not} proven that $ T(A_1) \cap T(A_2)\subseteq T(A_1 \cap A_2)$.\\
+    Here's a counter example:\\
+    \vspace{10pt}
+    % \begin{center}
+    Consider the subspaces $A=\{(x,y)\;|\;y=0,\;x,y\in\mathbb{R}\}$, $B=\{(x,y)\;|\;y=x,\;x,y\in\mathbb{R}\}$\\ and the linear transformation $\mathscr{L}$: $(x,y)\to (x,x)$.\\
+    \vspace{10pt}
+    In this case, $A\cap B=\{0\}$ and $\mathscr{L}(A)\cap\mathscr{L}(B)=\{(x,y)\;|\;y=x\}$.\\
+    For instance, $T\big((1,0)^{(A)}\big)=T\big((1,1)^{(B)}\big)=(1,1)\in \mathscr{L}(A)\cap\mathscr{L}(B)$\\
+    Yet, $\mathscr{L}\big(A\cap B)\big) = \mathscr{L}\big(\{0\}\big)=\{(0,0)\}$ \\
+    \vspace{10pt}
+    Hence, $(1,1)\notin \mathscr{L}\big(A\cap B\big)$, proving \underbar{line 4} false.\\
+    \vspace{10pt}
+    Since \underbar{line 4} false, the deduction in \underbar{line 5} is also false.
+    % \end{center}
+\end{spacing}
+
+	}
+}
+
+\pagebreak 
+
+\noin{\bf 2.} Let $c\in \mathbb R$, and let $T: P_n(\mathbb R) \to P_n(\mathbb R)$ be the linear transformation defined by $T(p(x))=cp(x)-xp'(x)$.  
+
+\vspace{20pt}
+
+\noin Determine all values of $c$ such that $T$ is bijective?
+
+%Question 2
+{
+	%%% Do not change the height of this box. Your work must fit inside it.
+	\makenonemptybox{550pt}{
+    \begin{spacing}{1.5}
+    Prove that $T$ is surjective:
+    \vspace*{-40pt}
+    \begin{center}
+    \begin{align*}
+        \text{Any }p(x)\in P_n(\mathbb{R})\text{ can be rewritten as: } p(x)&=a_1+a_2x+a_3x^2+\dots+a_{n+1}x^n\\
+        p'(x)&=a_2+2a_3x+3a_4x^2+\dots+na_{n+1}x^{n-1}\\
+        \text{and }T\big(p(x)\big)&=ca_1+ca_2x-a_2x+ca_3x^2-2a_3x^2+\dots+ca_{n+1}x^n-na_{n+1}x^n\\
+        &=a_1(c-0)+a_2x(c-1)+a_3x^2(c-2)+\dots+a_{n+1}x^n(c-n)
+    \end{align*}
+    If $c$ is any positive integer up to n, that is to say $c\in\{0,\;1,\;2\dots\;n\}$, one term with $x^c$ must be $0$ since $a_{c+1}x^c(c-c) = 0$,\\ 
+    where $T\big(P_n(\mathbb{R})\big)=$ \textbf{span} $\{1,\;x,\;x^2\dots \;x^{m-1},\;x^{m+1}\dots\; x^n\}\neq P_n(\mathbb{R})$\\
+    However, if $c\notin\{0,\;1,\;2,\;3\dots\;n\}$, all polynomial terms in $T\big(P_n(\mathbb{R})\big)$ can be nonzero:
+    \vspace*{-10pt}
+    \begin{align*}
+        T\big(p(x)\big)&=k_1+k_2x+k_3x^2+\dots+k_{n+1}x^n\\
+        T\big(P_n(\mathbb{R})\big)&=\text{\textbf{span }} \{1,\;x,\;x^2\dots\; x^n\}\\
+        &=P_n(\mathbb{R})\\
+    \end{align*}
+    \end{center} 
+    \end{spacing}
+    \vspace{-50pt}
+    \begin{center}
+    Therefore, \textbf{im} $T=P_n(\mathbb{R})$ if $c\notin\{1,\;2,\;3\dots\;n\}$, implying that $P_n(\mathbb{R})$ is surjective under the same condition.\\
+    \end{center}
+    \begin{spacing}{1.5}
+    Prove that $T$ is injective:\\
+    \vspace*{-24pt}
+    \begin{center}
+    Let $\tilde{v}=v_1+v_2x+v_3x^2+\dots+v_{n+1}x^n$ and $\tilde{w}=w_1+w_2x+w_3x^2+\dots+w_{n+1}x^n$, let $T(\tilde{v})=T(\tilde{w})$, then:\\
+    \vspace{10pt}
+    $\underbar{v_1(c-0)+v_2x(c-1)+v_3x^2(c-2)+\dots+v_{n+1}x^n(c-n)=w_1(c-0)+w_2x(c-1)+w_3x^2(c-2)+\dots+w_{n+1}x^n(c-n)}$\\
+    Where there is one and only one term of each power on each side of the equation.\\
+    \vspace{10pt}
+    Case 1: $c\in\{0,\;1,\;2,\;3\dots\;n\}$\\
+    Let $k\in\{0,\;1,\;2,\;3\dots\;n\}$, then some term $v_{k+1}(k-k)=w_{k+1}(k-k)\implies 0v_{k+1}=0w_{k+1}$\\
+    where $v_{k+1}$ and $w_{k+1}$ can be anything and does not have to be equal.\\
+    However, if they are not equal, then $\tilde v\neq\tilde w$. Hence, if $c\in\{0,\;1,\;2,\;3\dots\;n\}$,\\
+    $T(\tilde{v})=T(\tilde{w})$ does \underbar{not} imply $\tilde{v}=\tilde{w}$, meaning $T$ is not injective in under this condition.\\
+    \vspace{10pt}
+    Case 2: $\{c\;|\;c\in\mathbb{R},\;c\neq 0,\;1,\;2,\;3\dots \;n\}$:\\
+    A nonzero $x^k \notin$ \textbf{span} $\{0,\;1,\;x,\;x^2\dots\;x^{k-1},\;x^{k+1}\dots\;x^n\}$, hence:\\
+    \vspace{-30pt}
+    \begin{align*}
+        v_1(c-0)=w_1(c-0)&\implies v_1=w_1 \text{ if } c-0\neq0\\
+        v_2(c-1)=w_1(c-1)&\implies v_1=w_1 \text{ if } c-1\neq0\\
+        &\;\;\;\;\vdots\\
+        v_{n+1}(c-n)=w_{n+1}(c-n)&\implies v_{n+1}=w_{n+1} \text{ if } c-n\neq0
+    \end{align*}
+    Therefore, $v_i=w_i$ is true for all i and that $T(\tilde{v})=T(\tilde{w})$ implies $\tilde{v}=\tilde{w}$, proving $T$ injective when $c\notin\{0,\;1,\;2,\;3\dots\;n\}$.\\
+    \vspace{10pt}
+    Since $T$ is both surjective and injective when $c\notin\{0,\;1,\;2,\;3\dots\;n\}$, it is bijective for all $\{c\;|\;c\in\mathbb{R},\;c\neq 0,\;1,\;2,\;3\;\dots \;n\}.$ 
+    \end{center}
+    \end{spacing}
+    
+	}
+}
+
+
+\pagebreak
+
+
+\noin{\bf 3.}  Let $V$ and $W$ be vector spaces, and let $T: V \to W$ be a linear transformation. Let ${\bf v}_1, {\bf v}_2, {\bf v_3}$ be a basis for $V$.
+
+\vspace{20pt}
+
+\noin{(a)}  Prove that if $T$ is bijective, then $T{\bf v}_1, T{\bf v}_2, T{\bf v}_3$ is a basis for $W$.
+
+
+%Question 3(a)
+
+{
+	\vspace*{-10pt}
+	%%% Do not change the height of this box. Your work must fit inside it.
+	
+	\makenonemptybox{550pt}{
+    \vspace{10pt}
+    \begin{spacing}{1.5}
+	Prove that $T{\bf v}_1, T{\bf v}_2, T{\bf v}_3$ is linearly independent:
+    \vspace{-5pt}
+    \begin{center}
+         Let $a T{\bf v}_1 + b T{\bf v}_2 + c T{\bf v}_3 = {\bf 0}$, where $a, b, c \in \mathbb{R}$.\\
+         This can be rewritten as:\\
+         $T(a {\bf v}_1 + b {\bf v}_2 + c {\bf v}_3) = {\bf 0}$.\\
+         By the properties of a linear transformation, $a {\bf v}_1 + b {\bf v}_2 + c {\bf v}_3 = {\bf 0}$.\\
+         Since ${\bf v}_1, {\bf v}_2, {\bf v}_3$ is a basis for $V$, it is automatically implied that $a,\;b,\;c=0$, and so\\
+         $T(a {\bf v}_1 + b {\bf v}_2 + c {\bf v}_3) = {\bf 0}\implies a,\;b,\;c=0$.\\
+         \vspace{5pt}
+         Hence, $T{\bf v}_1, T{\bf v}_2, T{\bf v}_3$ linearly independent.
+    \end{center}
+    \vspace{5pt}
+    Prove that $T{\bf v}_1, T{\bf v}_2, T{\bf v}_3$ spans $W$:
+    \begin{center}
+        Let $\bf v$ be any arbitrary vector in $V$ and $\alpha,\;\beta,\;\gamma$ be any arbitrary real numbers.\\
+        $\bf v$ can be written as a linear combination of the basis vectors of $V$:\\
+        ${\bf v} = \alpha{\bf v}_1 + \beta{\bf v}_2 + \gamma{\bf v}_3$.\\
+        \vspace{-24pt}
+        \begin{align*}
+            \text{Let }{\bf w}&=T({\bf v})\text{, where it is any arbitrary vector in }W\\
+            &= T(\alpha {\bf v}_1 + \beta {\bf v}_2 + \gamma {\bf v}_3) \\
+            &= \alpha T({\bf v}_1) + \beta T({\bf v}_2) + \gamma T({\bf v}_3)
+        \end{align*}
+        Hence, any vector in $W$ can be written as a linear combination of $T{\bf v}_1, T{\bf v}_2, T{\bf v}_3$, so $T{\bf v}_1, T{\bf v}_2, T{\bf v}_3$ spans $W$.
+    \end{center}
+    \centering
+    Since $T{\bf v}_1, T{\bf v}_2, T{\bf v}_3$ is both linearly independent and spans $W$, it is a basis for $W$ as required.
+    \end{spacing}
+	}
+}
+
+\pagebreak
+
+\noin{\bf 3.}    Let $V$ and $W$ be vector spaces, and let $T: V \to W$ be a linear transformation. Let ${\bf v}_1, {\bf v}_2, {\bf v_3}$ be a basis for $V$.
+
+\vspace{20pt}
+
+\noin{(b)}  Prove that if $T{\bf v}_1, T{\bf v}_2, T{\bf v}_3$ is a basis for $W$, then $T$ is bijective.
+
+%Question 3(b) 
+    
+    {
+	\vspace*{-10pt}
+	%%% Do not change the height of this box. Your work must fit inside it.
+	\makenonemptybox{550pt}{
+    \vspace{10pt}
+    \begin{spacing}{1.5}
+        Prove that $T$ is surjective:\\
+        \vspace{-25pt}
+        \begin{center}
+            Any ${\bf w}\in W$ can be written as a linear combination of its basis vectors:\\
+            ${\bf w}=a T({\bf v}_1) + b T({\bf v}_2) + c T({\bf v}_3)$\\
+            By properties of a linear transformation,\\
+            ${\bf w}=T(a {\bf v}_1 + b {\bf v}_2 + c {\bf v}_3)$, where $a {\bf v}_1 + b {\bf v}_2 + c {\bf v}_3$ represents any vector in $V$\\
+            Since every arbitrary $\bf w$ can be mapped by $T$,\;
+            $W\subseteq$ \textbf{im} $T$.\\
+            And since every output of $T({\bf v})$ can be presented as a vector in $W$, \textbf{im} $T\subseteq W$.\\
+            \vspace{5pt}
+            Hence, \textbf{im} $T$ $= W$, proving $T$ surjective.
+        \end{center}
+        Prove that $T$ is injective:\\
+        \vspace{-25pt}
+        \begin{center}
+            Let $\bf w$, ${\bf w}'$ arbitrary vectors in $W$, where ${\bf w}=T({\bf v})$, ${\bf w}'=T({\bf v}')$ and $\alpha,\;\beta,\;\gamma,\;\alpha',\;\beta',\;\gamma'$ be any real number such that\\ 
+            ${\bf v}=\alpha{\bf v}_1 + \beta{\bf v}_2 + \gamma{\bf v}_3$\\
+            ${\bf v'}=\alpha'{\bf v}_1 + \beta'{\bf v}_2 + \gamma'{\bf v}_3$\\
+            \vspace{-20pt}
+            \begin{align*}
+                \text{Let }{\bf w} &= {\bf w}',\\
+                T({\bf v})&=T({\bf v}')\\
+                T(\alpha{\bf v}_1 + \beta{\bf v}_2 + \gamma{\bf v}_3)&=T(\alpha'{\bf v}_1 + \beta'{\bf v}_2 + \gamma'{\bf v}_3)\\
+                \alpha T{\bf v}_1 + \beta T{\bf v}_2 + \gamma T{\bf v}_3&=\alpha' T{\bf v}_1 + \beta' T{\bf v}_2 + \gamma' T{\bf v}_3\\
+                \alpha T{\bf v}_1 - \alpha' T{\bf v}_1+ \beta T{\bf v}_2 - \beta' T{\bf v}_2+ \gamma T{\bf v}_3-\gamma' T{\bf v}_3&=0\\
+                (\alpha-\alpha')T{\bf v}_1+(\beta-\beta') T{\bf v}_2+(\gamma-\gamma') T{\bf v}_3&=0\\
+                \text{Since }T{\bf v}_1, T{\bf v}_2, T{\bf v}_3&\text{ is a basis,}\\
+                \alpha-\alpha'&=0\\
+                \beta-\beta'&=0\\
+                \gamma-\gamma'&=0
+            \end{align*}
+            This implies that $\alpha=\alpha',\;\beta=\beta'$ and $\gamma=\gamma'$, that ${\bf v}={\bf v}'$.\\
+            Hence, we have shown that $T({\bf v})=T({\bf v}')\implies{\bf v}={\bf v}'$, proving $T$ injective\\
+            \vspace{10pt}
+            Since $T$ is both surjective and injective, $T$ is bijective as required.
+        \end{center}
+    \end{spacing}
+
+	} 
+}
+
+
+\end{document}

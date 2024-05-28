@@ -1,0 +1,663 @@
+\documentclass[10pt]{article}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{fullwidth}
+\usepackage{graphicx}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{tikz}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage[hidelinks, urlcolor=blue, linkcolor=blue, colorlinks=true]{hyperref} 
+
+\DeclarePairedDelimiterX\set[1]\lbrace\rbrace{\def\given{\;\delimsize\vert\;}#1}
+
+\newcommand{\bcent}{\begin{center}}
+\newcommand{\ecent}{\end{center}}
+\newcommand{\tb}{\textbf}
+\newcommand{\noin}{\noindent}
+\newcommand{\benum}{\begin{enumerate}}
+\newcommand{\eenum}{\end{enumerate}}
+\newcommand{\bitem}{\begin{itemize}}
+\newcommand{\eitem}{\end{itemize}}
+\def\boxx#1{
+    \framebox{
+    \begin{tabular}{c}
+    \\[-1pt]
+    #1 \\
+    \\[-1pt]
+    \end{tabular}
+    }
+}
+
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+  \edef\arraystretch{#1}%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{*\c@MaxMatrixCols c}}
+\makeatother
+
+%%% This command makes a framed box of a chosen height.
+\newcommand{\makenonemptybox}[2]{%
+\par\nobreak\vspace{\ht\strutbox}\noindent
+\setlength{\fboxrule}{0pt} % set this to 0pt to make invisible
+\fbox{%
+\parbox[c][#1][t]{\dimexpr\linewidth-2\fboxsep}{
+  \hrule width \hsize height 0pt
+  #2
+ }%
+}%
+}
+\makeatother    
+
+
+\begin{document}
+
+{\bcent\fontfamily{cmss}\selectfont
+\begin{tabular}{c}
+\textbf{}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\textbf{{\color{red} Due}: 11:59pm ET Monday April 10, 2023}\\\hline
+\end{tabular}\ecent
+}
+
+{\fontfamily{cmss}\selectfont
+\large\bcent\tb{}\\
+\tb{}\\
+\vspace{0pt}
+%\tb{Term Test 1}\\
+
+\tb{\Large MAT185 Linear Algebra}\\
+
+\tb{Assignment 4}
+\ecent}
+
+
+
+\noin{\fontfamily{cmss}\selectfont\tb{\large Instructions:}} \\ %% Fairly standard and designed to save time; however, tweak as necessary.
+
+\noindent Please read the {\bf MAT185 Assignment Policies \& FAQ} document for details on submission policies, collaboration rules and academic integrity, and general instructions. 
+
+\benum
+
+
+\item {\bf Submissions are only accepted by} \href{https://www.gradescope.ca}{Gradescope}. Do not send anything by email.  Late submissions are not accepted under any circumstance. Remember you can resubmit anytime before the deadline. 
+
+\item  {\bf Submit solutions using only this template pdf}.  Your submission should be a single pdf with your full written solutions for each question. If your solution is not written using this template pdf (scanned print or digital) then your submission will not be assessed. Organize your work neatly in the space provided.  Do not submit rough work. 
+
+\item  {\bf Show your work and justify your steps} on every question but do not include extraneous information.  Put your final answer in the box provided, if necessary.  We recommend you write draft solutions on separate pages and afterwards write your polished solutions here on this template.
+
+\item  {\bf You must fill out and sign the academic integrity statement below}; otherwise, you will receive zero for this assignment. 
+
+
+\eenum
+
+\vspace{30pt}
+
+
+\noin{\fontfamily{cmss}\selectfont\tb{\large Academic Integrity Statement:}} \\
+
+%%% Student information
+
+% Student 1
+\fbox{
+\begin{minipage}{\textwidth}
+{
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily Full Name: Qiao Wang}
+
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily Student number: 1009027447}
+
+\vspace{0.1in}
+}
+\end{minipage}
+}
+
+\vspace*{0.1in}
+
+% Student 2
+\fbox{
+\begin{minipage}{\textwidth}
+{
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily Full Name: Justin Lim}
+
+\vspace{0.2in}
+
+\makebox[\textwidth]{\sffamily Student number: 1008879055}
+
+\vspace{0.1in}
+}
+\end{minipage}
+}
+~
+
+I confirm that:
+
+\begin{itemize} 
+	\item I have read and followed the policies described in the document {\bf MAT185 Assignment Policies \& FAQ}.
+	\item In particular, I have read and understand the rules for collaboration, and permitted resources on assignments as described in subsection II of the the aforementioned document. I have not violated these rules while completing and writing this assignment. 
+	\item I understand the consequences of violating the University's academic integrity policies as outlined in the \href{http://www.governingcouncil.utoronto.ca/policies/behaveac.htm}{Code of Behaviour on Academic Matters}. I have not violated them while completing and writing this assignment.
+\end{itemize}
+By signing this document, I agree that the statements above are true. 
+
+% You should sign this PDF after compiling. Do not write your signature using LaTeX.
+\vspace{0.2in}
+$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\mathscr{QW}$\\
+
+{\large 
+\vspace{-25pt}
+\makebox[\textwidth]{\sffamily Signatures: 1)\enspace\hrulefill} 
+\vspace{13pt}
+$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\mathscr{Justin Lim}$\\
+\vspace{-40pt}
+
+\makebox[\textwidth]{\sffamily \hspace*{20mm} 2)\enspace\hrulefill} 
+
+}
+
+\vfill
+
+
+
+
+
+
+
+\pagebreak
+
+
+
+\noin{\bf 1.} Consider the sequence $\left \{ \displaystyle\frac{1}{1}, \displaystyle\frac{3}{2}, \displaystyle\frac{7}{5}, \dots, \displaystyle\frac{a_n}{b_n}, \dots \right \}$ where $a_{n+1}=a_n+2b_n$ and $b_{n+1}=a_n+b_n$.  
+
+\vspace{20pt}
+
+\noin{(a)} Find a matrix $A$ such that $A\begin{bmatrix} a_n \\ b_n \end{bmatrix} = \begin{bmatrix} a_{n+1}\\ b_{n+1} \end{bmatrix}$.
+
+
+%Question 1(a)
+
+{
+	\vspace*{-10pt}
+	%%% Do not change the height of this box. Your work must fit inside it.
+	
+	\makenonemptybox{100pt}{
+    \begin{center}
+    \begin{spacing}{1.5}
+    \begin{equation*}
+    A=
+        \begin{bmatrix}
+	    1 & 2\\
+            1 & 1
+	\end{bmatrix}
+    \text{since}
+    \begin{bmatrix}
+	    1 & 2\\
+            1 & 1
+	\end{bmatrix}
+    \begin{bmatrix}
+        a_n\\b_n
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        a_n+2b_n\\a_n+b_n
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        a_{n+1}\\b_{n+1}
+    \end{bmatrix}
+    \end{equation*}
+    \end{spacing}
+    \end{center}
+	}
+}
+
+%Question 1(b)
+
+\noin{(b)}  Find an invertible matrix $S$ and a diagonal matrix $D$ such that $A=SDS^{-1}$.
+
+{
+	\vspace*{-10pt}
+	%%% Do not change the height of this box. Your work must fit inside it.
+	\makenonemptybox{450pt}{
+    \vspace{-10pt}
+    \begin{spacing}{1.5}
+	\begin{align*}
+	    \text{We start by computing the eigenvalues: }\;\;\;\;\;\;\det(\lambda{\bf 1}-A)&=\det
+        \begin{bmatrix}
+            \lambda - 1 & -2\\
+            -1 & \lambda - 1
+        \end{bmatrix}\\
+        \det(\lambda{\bf 1}-A)&= (\lambda-1)^2-(-2)(-1)\\
+        \det(\lambda{\bf 1}-A)&= \lambda^2-2\lambda-1\\
+        \lambda&= \frac{2\pm\sqrt{(-2)^2+4}}{2}
+	\end{align*}
+    \vspace{-33pt}
+    \begin{center}
+    We find the eigenspaces associated with each eigenvalue:
+    \begin{tabular}{@{}c c@{}}
+        \underbar{$\lambda=1+\sqrt2$} \;\;\;\;\;\;\;\;\;\;\;&\;\;\;\;\;\;\;\;\;\;\; \underbar{$\lambda=1-\sqrt2$} \\[5pt]
+        $\left((1+\sqrt2){\bf 1}-A){\text{p}}\right)=0$\;\;\;\;\;\;\;\;\;\;\;&\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\; $\left((1-\sqrt2){\bf 1}-A){\text{p}}\right)=0$ \\[5pt]
+        
+        $\left(
+        \begin{bmatrix}
+            1+\sqrt2 & 0\\
+            0 & 1+\sqrt2
+        \end{bmatrix}
+        -
+        \begin{bmatrix}
+            1 & 2\\
+            1 & 1
+        \end{bmatrix}
+        \right)\text{p}=0$ \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;&\;\;\;\;\;\;\;\;\;\;\; $\left(
+        \begin{bmatrix}
+            1-\sqrt2 & 0\\
+            0 & 1-\sqrt2
+        \end{bmatrix}
+        -
+        \begin{bmatrix}
+            1 & 2\\
+            1 & 1
+        \end{bmatrix}
+        \right)\text{p}=0$ \\[15pt]
+    
+        $
+        \begin{bmatrix}
+            \sqrt2&-2\\
+            -1&\sqrt2
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            {\text{p}}_1\\
+            {\text{p}}_2
+        \end{bmatrix}
+        = 0
+        $
+        \;\;\;\;\;\;\;\;\;\;\;&\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+        $
+        \begin{bmatrix}
+            -\sqrt2&-2\\
+            -1&-\sqrt2
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            {\text{p}}_1\\
+            {\text{p}}_2
+        \end{bmatrix}
+        = 0
+        $\\[5pt]
+
+        $\sqrt2{\text{p}}_1=2{\text{p}}_2 $
+        \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;&\;\;\;\;\;\;\;\;\;\;\;
+        $-\sqrt2{\text{p}}_1=2{\text{p}}_2 $\\[1pt]
+
+        $
+        \begin{bmatrix}
+            {\text{p}}_1\\
+            {\text{p}}_2
+        \end{bmatrix}
+        =
+        {\text{p}}_2
+        \begin{bmatrix}
+            \sqrt2\\
+            1
+        \end{bmatrix}
+        $
+        \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;&\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+        $
+        \begin{bmatrix}
+            {\text{p}}_1\\
+            {\text{p}}_2
+        \end{bmatrix}
+        =
+        {\text{p}}_2
+        \begin{bmatrix}
+            -\sqrt2\\
+            1
+        \end{bmatrix}
+        $\\[16pt]
+
+        $
+        \varepsilon_{\lambda=1+\sqrt2}=\text{span}\left\{
+        \begin{bmatrix}
+            \sqrt2\\
+            1
+        \end{bmatrix}
+        \right\}
+        $
+        \;\;\;\;\;\;\;\;\;\;\;&\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+        $
+        \varepsilon_{\lambda=1-\sqrt2}=\text{span}\left\{
+        \begin{bmatrix}
+            -\sqrt2\\
+            1
+        \end{bmatrix}
+        \right\}
+        $
+    \end{tabular}
+    \vspace{5pt}
+    \begin{spacing}{1}
+        Hence, we construct the diagnal matrix $D=
+    \begin{bmatrix}
+        1+\sqrt2&0\\0&1-\sqrt2
+    \end{bmatrix}
+    $with the eigenvalues and we construct $
+    S=
+    \begin{bmatrix}
+        \sqrt2&-\sqrt2\\1&1
+    \end{bmatrix}
+    $
+    based on the bases of the eigenspaces.
+    \end{spacing}
+    \vspace{10pt}
+    We then find the inverse: 
+    $\left[
+    \begin{array}{cc|cc}
+        \sqrt2 & -\sqrt2 & 1 &0\\
+        1 & 1 & 0 &1
+    \end{array}
+    \right]
+    \rightarrow 
+    \left[
+    \begin{array}{cc|cc}
+        2\sqrt2 & 0 & 1 &\sqrt2\\
+        1 & 1 & 0 &1
+    \end{array}
+    \right]
+    \rightarrow
+    \dots
+    \rightarrow 
+    \left[
+    \begin{array}{cc|cc}
+        1& 0 & \frac{1}{2\sqrt2} &\frac{1}{2}\\
+        0 & 1 & -\frac{1}{2\sqrt2} &\frac{1}{2}
+    \end{array}
+    \right]
+    $
+    \\
+    \vspace{5pt}
+    $\implies S^{-1}
+    =
+    \begin{bmatrix}
+    \frac{1}{2\sqrt{2}} & \frac{1}{2} \\
+    -\frac{1}{2\sqrt{2}} & \frac{1}{2}
+    \end{bmatrix}
+    $
+    and
+    $
+    \begin{bmatrix}
+        \sqrt2&-\sqrt2\\1&1
+    \end{bmatrix}
+    \begin{bmatrix}
+        1+\sqrt2&0\\0&1-\sqrt2
+    \end{bmatrix}
+    \begin{bmatrix}
+    \frac{1}{2\sqrt{2}} & \frac{1}{2} \\
+    -\frac{1}{2\sqrt{2}} & \frac{1}{2}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+	    1 & 2\\
+            1 & 1
+    \end{bmatrix}
+    $.\\
+    \vspace{15pt}
+    Therefore, we have found $S,\;D$ and $S^{-1}$ such that $A=SDS^{-1}$ as required.
+    \end{center}
+    \end{spacing}
+	}
+}
+
+\pagebreak
+
+\noin{\bf 1.}   Consider the sequence $\left \{ \displaystyle\frac{1}{1}, \displaystyle\frac{3}{2}, \displaystyle\frac{7}{5}, \dots, \displaystyle\frac{a_n}{b_n}, \dots \right \}$ where $a_{n+1}=a_n+2b_n$ and $b_{n+1}=a_n+b_n$.  
+
+\vspace{20pt}
+
+\noin{(c)}  Use your answer from part (b) to find explicit formulas for $a_n$ and $b_n$, and then show that $\displaystyle \lim_{n\to \infty} \frac{a_n}{b_n}=\sqrt{2}$.
+
+%Question 1(c) 
+    
+    {
+	\vspace*{-40pt}
+	%%% Do not change the height of this box. Your work must fit inside it.
+	
+	\makenonemptybox{550pt}{
+\begin{spacing}{1.5}
+    \begin{center}
+        \begin{align*}
+            \;\;\;\;\;\;\;\;\;\;\;\;A_1&=SDS^{-1}A_0\\
+            \;\;\;\;\;\;\;\;\;\;\;\;A_2&=SDS^{-1}A_1=SDS^{-1}SDS^{-1}A_0=SD^2S^{-1}A_0\\
+            \;\;\;\;\;\;\;\;\;\;\;\;A_3&=SDS^{-1}A_2=SDS^{-1}SD^2S^{-1}A_0=SD^3S^{-1}A_0\\
+            &\;\;\vdots\\
+            \;\;\;\;\;\;\;\;\;\;\;\;A_n&=SD^nS^{-1}A_0
+        \end{align*}
+        \vspace{-140pt}
+        \begin{flushleft}
+            Let $A_0=\begin{bmatrix}
+                a_0\\b_0
+            \end{bmatrix}$\dots\; 
+            $A_n=\begin{bmatrix}
+                a_n\\b_n
+            \end{bmatrix}$:\\
+            \vspace{3pt}
+            $D^1=
+            \begin{bmatrix}
+                1+\sqrt2&0\\0&1-\sqrt2
+            \end{bmatrix}$\\
+            \vspace{3pt}
+            $D^2=
+            \begin{bmatrix}
+                (1+\sqrt2)^2&0\\0&(1-\sqrt2)^2
+            \end{bmatrix}$\\
+            \vspace{3pt}
+            \vspace{3pt}
+            \;\;\;\;\;\;\;\vdots\\
+            \vspace{3pt}
+            \vspace{3pt}
+            $D^n=
+            \begin{bmatrix}
+                (1+\sqrt2)^n&0\\0&(1-\sqrt2)^2
+            \end{bmatrix}$
+        \end{flushleft}
+        \vspace{-50pt}
+
+        \begin{align*}
+            \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;{SD}^nS^{-1}&=
+            \begin{bmatrix}
+                \sqrt2&-\sqrt2\\1&1
+            \end{bmatrix}
+            \begin{bmatrix}
+                (1+\sqrt2)^n&0\\0&(1-\sqrt2)^n
+            \end{bmatrix}
+            \begin{bmatrix}
+                \frac{1}{2\sqrt2}&\frac{1}{2}\\\frac{-1}{2\sqrt2}&\frac{1}{2}
+            \end{bmatrix}
+            \\
+            &=
+            \begin{bmatrix}[1.5]
+                \sqrt2(1+\sqrt2)^n&-\sqrt2(1-\sqrt2)^n\\(1+\sqrt2)^n&(1-\sqrt2)^n
+            \end{bmatrix}
+            \begin{bmatrix}[1.5]
+                \frac{1}{2\sqrt2}&\frac{1}{2}\\\frac{-1}{2\sqrt2}&\frac{1}{2}
+            \end{bmatrix}
+            \\
+            &=
+            \begin{bmatrix}[1.5]
+                \frac{\sqrt2(1+\sqrt2)^n}{2\sqrt2}+\frac{\sqrt2(1-\sqrt2)^n}{2\sqrt2}
+                &
+                \frac{\sqrt2(1+\sqrt2)^n}{2}-\frac{\sqrt2(1-\sqrt2)^n}{2}
+                \\
+                \frac{(1+\sqrt2)^n}{2\sqrt2}-\frac{(1-\sqrt2)^n}{2\sqrt2}
+                &
+                \frac{\sqrt2(1+\sqrt2)^n}{2}+\frac{\sqrt2(1-\sqrt2)^n}{2}
+            \end{bmatrix}
+            \\
+            &=
+            \begin{bmatrix}[1.5]
+                \frac{(1+\sqrt2)^n}{2}+\frac{(1-\sqrt2)^n}{2}
+                &
+                \frac{\sqrt2(1+\sqrt2)^n}{2}-\frac{\sqrt2(1-\sqrt2)^n}{2}
+                \\
+                \frac{(1+\sqrt2)^n}{2\sqrt2}-\frac{(1-\sqrt2)^n}{2\sqrt2}
+                &
+                \frac{\sqrt2(1+\sqrt2)^n}{2}+\frac{\sqrt2(1-\sqrt2)^n}{2}
+            \end{bmatrix}
+        \end{align*}
+        $
+            A_n&=
+            \begin{bmatrix}
+                a_n\\b_n
+            \end{bmatrix}
+            =
+            \begin{bmatrix}[1.5]
+                \frac{\sqrt2(1+\sqrt2)^n}{2\sqrt2}+\frac{\sqrt2(1-\sqrt2)^n}{2\sqrt2}
+                &
+                \frac{\sqrt2(1+\sqrt2)^n}{2}-\frac{\sqrt2(1-\sqrt2)^n}{2}
+                \\
+                \frac{(1+\sqrt2)^n}{2\sqrt2}-\frac{(1-\sqrt2)^n}{2\sqrt2}
+                &
+                \frac{\sqrt2(1+\sqrt2)^n}{2}+\frac{\sqrt2(1-\sqrt2)^n}{2}
+            \end{bmatrix}
+            \begin{bmatrix}[1.5]
+                1\\1
+            \end{bmatrix}
+        $\\
+        \vspace{10pt}
+        \begin{tabular}{ll}
+        $a_n=\frac{(1+\sqrt2)^n+(1-\sqrt2)^n}{2}+\frac{(1+\sqrt2)^n+(1-\sqrt2)^n}{\sqrt2}$ & $b_n=\frac{(1+\sqrt2)^n-(1-\sqrt2)^n}{2\sqrt2}+\frac{(1+\sqrt2)^n+(1-\sqrt2)^n}{2}$ \\
+        $a_n=\frac{(\sqrt2+2)(1+\sqrt2)^n+(\sqrt2-2)(1-\sqrt2)^n}{2}$ & $b_n=\frac{(1+\sqrt2)^n-(1-\sqrt2)^n+\sqrt2(1+\sqrt2)^n+\sqrt2(1-\sqrt2)^n}{2\sqrt2}$\\
+        $a_n=\frac{(1+\sqrt2)(1+\sqrt2)^n+(1-\sqrt2)(1-\sqrt2)^n}{2}$ & $b_n=\frac{(1+\sqrt2)(1+\sqrt2)^n-(1-\sqrt2)(1-\sqrt2)^n}{2\sqrt2}$ \\
+        $a_n=\frac{(1+\sqrt2)^{n+1}+(1-\sqrt2)^{n+1}}{2}$ & $b_n=\frac{(1+\sqrt2)^{n+1}-(1-\sqrt2)^{n+1}}{2\sqrt2}$
+        \end{tabular}  
+        \begin{align*}
+            \lim_{n\rightarrow\infty}\frac{a_n}{b_n}&=\lim_{n\rightarrow\infty}\frac{\left(\frac{(1+\sqrt2)^{n+1}+(1-\sqrt2)^{n+1}}{2}\right)}{\left(\frac{(1+\sqrt2)^{n+1}-(1-\sqrt2)^{n+1}}{2\sqrt2}\right)}\\
+            &=\sqrt2\lim_{n\rightarrow\infty}\frac{(1+\sqrt2)^{n+1}+(1-\sqrt2)^{n+1}}{(1+\sqrt2)^{n+1}-(1-\sqrt2)^{n+1}}\\
+            &=\sqrt2\lim_{n\rightarrow\infty}\frac{(1+\sqrt2)^{n+1}+0}{(1+\sqrt2)^{n+1}-0}\impliedby\lim_{n\rightarrow\infty}(1-\sqrt2)^n=0\\
+            &=\sqrt2\text{ as required.}
+        \end{align*}
+    \end{center}
+\end{spacing}
+	}
+}
+
+\pagebreak
+
+\noin{\bf 2.}    Let $A$ be an $n\times n$ matrix, and suppose that the only eigenvalues of $A$ are 0, 1, and 2.
+
+\vspace{20pt}
+
+\noin{(a)}  Prove that $\mathrm{dim}\, E_1(A) + \mathrm{dim}\, E_2(A) \leq \mathrm{rank}\, A$.
+
+%Question 2(a) 
+    
+    {
+\vspace*{10pt}
+%%% Do not change the height of this box. Your work must fit inside it.
+\makenonemptybox{550pt}{
+    \begin{spacing}{1.5}
+        Let's suppose the opposite statement is true, $\mathrm{dim}\, E_1(A) + \mathrm{dim}\, E_2(A) > \mathrm{rank}\, A$. For $\lambda_0:$
+        \vspace{-35pt}
+        \begin{center}
+            \begin{align*}
+                \det (\lambda_0{\bf1}-A)&=\det (-A)\\
+                \implies -A{\bf{p}_{\lambda=0}}&=0\\
+                A{\bf{p}_{\lambda=0}}&=0\\
+                \text{null } A&\text{ is the same as the span of all }{\bf{p}_{\lambda=0}}\text{ and hence,}\\
+                \text{null } A&=E_0(A)\\
+                \text{dim null } A&=\text{dim }E_0(A)
+            \end{align*}
+        \end{center}
+        By Rank Nullity Theorem:
+        \vspace{-35pt}
+        \begin{center}
+            \begin{align*}
+                \text{dim null }A&=n-\text{rank }A\\
+                \text{rank }A&=n-\text{dim null }A
+            \end{align*}  
+        \end{center}
+        Substituting, we get: 
+        \vspace{-35pt}
+        \begin{center}
+            \begin{align*}
+                \mathrm{dim}\, E_1(A) + \mathrm{dim}\, E_2(A) &> \mathrm{rank}\, A\\
+                \mathrm{dim}\, E_1(A) + \mathrm{dim}\, E_2(A) &> n-\text{dim }E_0(A)\\
+                \text{dim }E_0(A) + \mathrm{dim}\, E_1(A) + \mathrm{dim}\, E_2(A) &> n
+            \end{align*}
+        \end{center}
+        \vspace{5pt}
+        By Theorem III,
+        \vspace{-6pt}
+        \begin{center}
+                $\big\{x_0\in E_0(A),\;x_1\in E_1(A),\;x_2\in E_2(A)\big\}$ linearly independent.
+        \end{center}
+        Let $e_1=\{x^{(e_1)}_1,\;,x^{(e_1)}_2\dots\},\;e_2=\{x^{(e_2)}_1,\;,x^{(e_2)}_2\dots\},\;e_3=\{x^{(e_3)}_1,\;,x^{(e_3)}_2\dots\}$ be bases for $E_0(A),\;E_1(A),\;E_2(A)$ respectively:
+        \vspace{-6pt}
+        \begin{center}
+            Since each set of vectors in the bases are linearly independent, and any vector from one basis is independent with respect to vectors from other bases,\\
+            $\{x^{(e_1)}_1,\;x^{(e_1)}_2\dots x^{(e_2)}_1\;,x^{(e_2)}_2\dots x^{(e_3)}_1,\;x^{(e_3)}_2\dots\}$ is linearly independent, where there are $k$ elements.
+        \end{center}
+        \vspace{6pt}
+        Since all $\{x^{(e_1)}_1,\;x^{(e_1)}_2\dots x^{(e_2)}_1\;,x^{(e_2)}_2\dots x^{(e_3)}_1,\;x^{(e_3)}_2\dots\}$ are elements of $^n\mathbb{R}$ and they are linearly independent:
+        \vspace{-6pt}
+        \begin{center}
+            We have $k>n$ and the Fundamental Theorem of Linear Algebra is violated.\\
+            The fundamental theorem will only hold if $k\leq n\implies\mathrm{dim}\, E_1(A) + \mathrm{dim}\, E_2(A) \leq \mathrm{rank}\, A$.\\
+            \vspace{20pt}
+            Therefore, by contradiction, we have proven $\mathrm{dim}\, E_1(A) + \mathrm{dim}\, E_2(A) \leq \mathrm{rank}\, A$ true as required.
+        \end{center}
+    \end{spacing}
+	}
+}
+
+
+\pagebreak
+
+\noin{\bf 2.}    Let $A$ be an $n\times n$ matrix, and suppose that the only eigenvalues of $A$ are 0, 1, and 2.
+
+\vspace{20pt}
+
+\noin{(b)}  Prove that if $\mathrm{dim}\, E_1(A) + \mathrm{dim}\, E_2(A) =\mathrm{rank}\, A$, then $A$ is diagonalizable.
+
+%Question 2(b) 
+    
+    {
+	\vspace*{10pt}
+	\makenonemptybox{550pt}{
+\begin{spacing}{1.5}
+    As proven in (a), $\text{dim null } A=\text{dim }E_0(A)$ and hence rank $A=n-$dim $E_0(A)$.
+    \vspace{-35pt}
+    \begin{center}
+        \begin{align*}
+            \text{dim }E_1(A)+\text{dim }E_2(A)&=\text{rank }A\\
+            \text{dim }E_0(A)+\text{dim }E_1(A)+\text{dim }E_2(A)&=n
+        \end{align*}
+    \end{center}
+    Let $H_{\lambda=0},\;H_{\lambda=1},\;H_{\lambda=2}$ be bases $E_0(A),\;E_1(A),\;E_2(A)$ respectively. Since the sets are each linearly independent, by Theorem IV:
+    \vspace{-35pt}
+    \begin{center}
+        \begin{align*}
+            H=\bigcup_{\alpha=0}^2H_{\lambda=0} \text{ is linearly independent.}
+        \end{align*}
+    \end{center}
+    Since $\text{dim }E_0(A)+\text{dim }E_1(A)+\text{dim }E_2(A)&=n:$
+    \begin{center}
+        Because $H$ is a set of $n$ linearly independent vectors in $^n\mathbb{R}$, it follows that $H$ forms a basis for $^n\mathbb{R}$.\\
+        Therefore, by the Diagonalization Theorem, $A$ is diagonalizable.
+    \end{center}
+    \vspace{9pt}
+    \begin{center}
+        Therfore, if $\mathrm{dim}\, E_1(A) + \mathrm{dim}\, E_2(A) =\mathrm{rank}\, A$, then $A$ is diagonalizable as required.
+    \end{center}
+\end{spacing}
+	}
+}
+
+
+
+\end{document}

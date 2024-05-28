@@ -1,0 +1,317 @@
+\documentclass[12pt]{article}
+\usepackage{frExamplee}
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{csquotes}
+\usepackage[backend=biber, style=ieee,]{biblatex}
+\usepackage{setspace}
+\usepackage[usenames, dvipsnames]{xcolor}
+\usepackage{xspace}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{mathrsfs}
+\usepackage{wrapfig}
+\usepackage{placeins}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{hyperref}
+\usepackage{calrsfs}
+% \doublespacing
+\usepackage{setspace}
+\setstretch{1.4}
+\usepackage{fancyhdr} 
+\fancyhf{}
+\cfoot{\thepage}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}%
+
+\addbibresource{FRtemplates/frExampleRefs.bib}
+
+\title{AER210 Problem Set 1}
+
+\author{
+Tony Wang \\
+1009027447\\
+TUT0106
+}
+\begin{document}
+\maketitle
+\vspace{-45pt}
+\begin{enumerate}
+    \item \textbf{Deriving Gradient and Divergence Operators}
+    \vspace{-5pt}
+    \begin{enumerate}
+        \item We are given:
+        \vspace{-15pt}
+        \begin{center}
+        \begin{align*}
+            d\ell&=dr\hat{r}+rd\theta\hat{{\bf \theta}}\\
+            df&=\frac{\partial f}{\partial r}dr+\frac{\partial f}{\partial \theta}d\theta\\
+            df&=d\ell\cdot\nabla f
+        \end{align*}
+        \begin{align*}
+            \nabla f \cdot \left(dr\hat{r}+rd\theta\hat{{\bf \theta}}\right) &= \frac{\partial f}{\partial r}dr+\frac{\partial f}{\partial \theta}d\theta\\
+            \text{Computing the dot product, }\nabla f &= \boxed{\frac{\partial f}{\partial r} \hat{r} + \frac{1}{r}\frac{\partial f}{\partial \theta} \hat{{\bf \theta}}}
+        \end{align*}
+        \end{center}
+        \item 
+        \vspace{-5pt}
+        \begin{align*}
+            \text{We just derived that }\nabla f &= \frac{\partial f}{\partial r} \hat{r} + \frac{1}{r}\frac{\partial f}{\partial \theta} \hat{{\bf \theta}}\\
+            \implies \nabla &= \frac{\partial}{\partial r}\hat{r}+\frac{1}{r}\frac{\partial}{\partial \theta}\hat{{\bf \theta}}
+        \end{align*}
+        \begin{align*}
+            F&=F_r\hat{r}+F_\theta\hat{{\bf \theta}}\\
+            \nabla \cdot F &= \left(\frac{\partial}{\partial r}\hat{r}+\frac{1}{r}\frac{\partial}{\partial \theta}\hat{{\bf \theta}}\right)\cdot\left(F_r\hat{r}+F_\theta\hat{{\bf \theta}}\right)\\
+            &=\frac{\partial}{\partial r}F_r\hat{r}+\frac{\partial}{\partial r}F_\theta\hat{r}+\frac{1}{r}\frac{\partial}{\partial \theta}F_r\hat{{\bf \theta}}+\frac{1}{r}\frac{\partial}{\partial \theta}F_\theta\hat{{\bf \theta}}\\
+            &=\frac{\partial f_r}{\partial r}+\frac{F_r}{r}+\frac{1}{r}\frac{\partial f_\theta}{\partial \theta}\\
+            &=\boxed{\frac{1}{r}\frac{\partial}{\partial r}(rF_r)+\frac{1}{r}\frac{\partial f_\theta}{\partial \theta}} \text{ as required}
+        \end{align*}
+    \end{enumerate}
+    \newpage
+    \item \textbf{A Rotational Force Field}
+    \begin{equation*}
+        F=\frac{x-y}{2x^2+2y^2}\hat{x}+\frac{x+y}{2x^2+2y^2}\hat{y},\;(x,y)\in\mathbb{R}^2\backslash\{(0,0)\}
+    \end{equation*}
+    \vspace{-7pt}
+    \begin{enumerate}
+        \item We start by parameterize the unit circle with $x=\cos t$, $y=\sin t$, where
+        \vspace{-5pt}
+        \begin{center}
+            \begin{equation*}
+                \begin{cases}
+                    F=\left<\frac{\cos t-\sin t}{2\cos^2t+2\sin^2t},\frac{\cos t+\sin t}{2\cos^2t+2\sin^2t}\right>\\
+                    \Vec{r}=\left<\cos t,\sin t\right>\\
+                    \Vec{r'}=\left<-\sin t,\cos t\right>
+                \end{cases}
+            \end{equation*}
+            \begin{align*}
+                W&=\int_0^{2\pi}\left<\frac{\cos t-\sin t}{2\cos^2t+2\sin^2t},\frac{\cos t+\sin t}{2\cos^2t+2\sin^2t}\right>\cdot\left<-\sin t,\cos t\right>{\rm dt}\\
+                &=\int_0^{2\pi}\left<\frac{\cos t-\sin t}{2},\frac{\cos t+\sin t}{2}\right>\cdot\left<-\sin t,\cos t\right>{\rm dt}\\
+                &=\frac{1}{2}\int_0^{2\pi}-\sin t\cos t+\sin^2t+\cos^2t+\sin t\cos t\;{\rm dt}\\
+                &=\frac{1}{2}\int_0^{2\pi}1\;{\rm dt}\\
+                &=\boxed{\pi}
+            \end{align*}
+        \end{center}
+        \newpage
+        \item 
+        \vspace{-10pt}
+        \begin{align*}
+            \Vec{r}_1=\left<1,t\right>&\implies\Vec{r'}_1=\left<0,1\right>\\
+            \Vec{r}_2=\left<1-2t,1\right>&\implies\Vec{r'}_2=\left<-2,0\right>\\
+            \Vec{r}_3=\left<-1,1-2t\right>&\implies\Vec{r'}_3=\left<0,-2\right>\\
+            \Vec{r}_4=\left<2t-1,-1\right>&\implies\Vec{r'}_4=\left<2,0\right>\\
+            \Vec{r}_5=\left<1,t-1\right>&\implies\Vec{r'}_5=\left<0,1\right>
+        \end{align*}
+        % \begin{align*}
+        %     W&=\sum_{i=1}^5\int_{\Vec{r}_i}F\left(\Vec{r}_i(t)\right)\cdot\Vec{r'}_i(t)\;{\rm dt}\\
+        %     &=\int_0^1\left<\frac{1-t}{2+2t^2},\frac{1+t}{2+2t^2}\right>\cdot\left<0,1\right> + \\
+        %     &\left<\frac{-1-t}{2(1-2t)^2+2(2-t)^2},\frac{3-3t}{2(1-2t)^2+2(2-t)^2}\right>\cdot\left<-2,-1\right> + \\
+        %     &\left<\frac{1+t}{2+2t^2},\frac{1-t}{2+2t^2}\right>\cdot\left<0,-1\right> + \\
+        %     &\left<\frac{t+1}{2(2t-1)^2+2(t-2)^2},\frac{3-3t}{2(2t-1)^2+2(t-2)^2}\right>\cdot\left<-2,1\right> + \\
+        %     &\left<\frac{2-t}{2+2(t-1)^2},\frac{t}{2+2(t-1)^2}\right>\cdot\left<0,1\right>{\rm dt}\\
+        %     &=\int_0^1\frac{1+t}{2+2t^2}+\frac{1+t}{(1-2t)^2+(2-t)^2}+\frac{-3+3t}{2(1-2t)^2+2(2-t)^2}+\frac{t-1}{2+2t^2}+\\
+        %     &\frac{-1-t}{(1-2t)^2+(2-t)^2}+\frac{3-3t}{2(2t-1)^2+2(t-2)^2}+\frac{t}{2+2(t-1)^2}{\rm dt}\\
+        %     &=\int_0^1\frac{t}{1+t^2}+\frac{t}{2+2(t-1)^2}{\rm dt}\\
+        %     &=\boxed{\frac{1}{8}(\pi+\ln4)}
+        % \end{align*}
+        \begin{align*}
+            W&=\sum_{i=1}^5\int_{\Vec{r}_i}F\left(\Vec{r}_i(t)\right)\cdot\Vec{r'}_i(t)\;{\rm dt}\\
+            &=\frac{1}{2}\int_0^1\frac{1+t}{1+t^2}+\frac{4t}{1+(1-2t)^2}+\frac{4t}{1+(1-2t)^2}+\frac{4t}{(2t-1)^2+1}+\frac{t}{1+(t-1)^2}\;{\rm dt}\\
+            &\text{numerically integrating, }\\
+            W&=\boxed{\pi}
+        \end{align*}
+        \newpage
+        \item 
+        \begin{align*}
+            W&=\int_0^{-2\pi}\left<\frac{\cos t-\sin t}{2\cos^2t+2\sin^2t},\frac{\cos t-\sin t}{2\cos^2t+2\sin^2t}\right>\cdot\left<-\sin t,\cos t\right>{\rm dt}\\
+            &=\int_0^{-2\pi}\left<\frac{\cos t-\sin t}{2},\frac{\cos t+\sin t}{2}\right>\cdot\left<-\sin t,\cos t\right>{\rm dt}\\
+            &=\frac{1}{2}\int_0^{-2\pi}-\sin t\cos t+\sin^2t+\cos^2t+\sin t\cos t\;{\rm dt}\\
+            &=\frac{1}{2}\int_0^{-2\pi}1\;{\rm dt}\\
+            &=\boxed{-\pi}
+        \end{align*}
+        \item In the polar coordinate system, where $\nabla \phi=\left<\frac{\partial \phi}{\partial r},\frac{1}{r}\frac{\partial \phi}{\partial \theta}\right>$:
+        \vspace{-10pt}
+        \begin{center}
+            \begin{align*}
+                \text{In cartesian, }F&=\left<\frac{\partial \phi}{\partial x}, \frac{\partial \phi}{\partial y}\right>\\
+                &=\left<\frac{r\cos \theta-r\sin \theta}{2r^2\cos^2\theta+2r^2\sin^2\theta},\frac{r\cos \theta+r\sin \theta}{2r^2\cos^2\theta+2r^2\sin^2\theta}\right>\\
+                &=\left<\frac{\cos \theta-\sin \theta}{2r},\frac{\cos \theta+\sin \theta}{2r}\right>\\
+                \text{In polar, }F&=\left<\frac{\partial \phi}{\partial r}, \frac{\partial \phi}{\partial \theta}\right>\\
+                &=\left<\cos\theta\frac{\partial \phi}{\partial x}+\sin\theta\frac{\partial \phi}{\partial y},-\sin\theta\frac{\partial \phi}{\partial x}+\cos\theta\frac{\partial \phi}{\partial y}\right>\\
+                &=\left<\frac{1}{2r},\frac{1}{2r}\right>
+            \end{align*}
+            \vspace{-5pt}
+            \begin{align*}
+                r:\;\phi&=\frac{\ln(r)}{2}+P(r,\theta)\\
+                \theta:\;\phi&=\frac{\theta}{2r}\cdot\frac{1}{r}+Q(r,\theta)\\
+                \phi&=\boxed{\frac{\ln(r)+\theta}{2} + C}
+            \end{align*}
+        \end{center}
+        
+        \newpage
+        \item 
+        \vspace{-5pt}
+        \begin{align*}
+            (\nabla\times f)_z&=\frac{1}{r}\left(\frac{\partial}{\partial r}(rF_\theta)-\frac{\partial F_r}{\partial\theta}\right)\\
+            &=\frac{1}{r}\left[\frac{\partial}{\partial r}\left(\frac{1}{2}\right)- \frac{\partial}{\partial\theta}\left(\frac{1}{2r}\right)\right]\\
+            &=\boxed{0}
+        \end{align*}
+        \item Work done in this field is clearly path-dependant since going around the unit circle once $(\pi)$ and $n$ times $(n\pi)$ yields different results even though the start and end points are identical, which also implies that the field is not conservative. This neither agrees nor disagrees with Green's Theorem, since although there does exist a function $\phi$ where its gradient is the given force field, the domain of the field is not a regular region (not simply connected). Due to the same reason, the Gradient Theorem, or the Fundamental Theorem does not apply here generally for cartesian coordinates. However, since in polar coordinates the origin is omitted, the Gradient Theorem will apply.
+    \end{enumerate}
+    \newpage
+    \item \textbf{Spherinder: A 4D Cylinder}
+    \begin{enumerate}
+        \item We know that the Riemann definition for a tripple integral in spherical coordinates is:
+        \begin{align*}
+            \iiint_V {\rm dV}&=\lim_{l,m,n\rightarrow\infty}\sum_{i=1}^l\sum_{j=1}^m\sum_{k=1}^nf(x^*_{ijk},y^*_{ijk},z^*_{ijk})\Delta V\\
+            &=\lim_{l,m,n\rightarrow\infty}\sum_{i=1}^l\sum_{j=1}^m\sum_{k=1}^nf(r^*_{ijk},\theta^*_{ijk},\varphi^*_{ijk})(r^*_{ijk})^2\sin\varphi\Delta r\Delta\theta\Delta\varphi
+        \end{align*}
+        \begin{equation*}
+            \text{To calculate }\iiiint_\Omega{\rm d}\Omega,
+        \end{equation*}
+        \begin{align*}
+            \Delta\Omega&=V\Delta w\\
+            \sum^\infty\Delta\Omega&=\sum^\infty V\Delta w\\
+            &=\boxed{\sum^\infty\sum^\infty\sum^\infty\sum^\infty f(r^*\cos\theta\sin\varphi^*,r^*\sin\theta^*\sin\varphi^*,r\cos\varphi^*, w^*)r^{*2}\sin\varphi^*\Delta r\Delta\theta\Delta\varphi\Delta w}
+        \end{align*} 
+        \item Fubini's Theorem is applicable to the definition of the quadruple integral defined above because we have already proven that every iterated integral of $\iiint_V {\rm dV}$ is Riemann integrable if the it itself is integrable. Given that, we can conclude that if $\iiiint_\Omega{\rm d\Omega}$ is Riemann integrable then every one of its iterated integral is also Riemann integrable, corresponding to Fubini's theorem.
+        \newpage
+        \item 
+        \begin{equation*}
+        \Vec{T}=
+            \begin{cases}
+                x=r\cos\theta\sin\varphi\\
+                y=r\sin\theta\sin\varphi\\
+                z=r\cos\varphi\\
+                w=w
+            \end{cases},\;
+            \begin{cases}
+                \Omega \subseteq (-\infty,\infty)_x\times(-\infty,\infty)_y\times(-\infty,\infty)_z\times(-\infty,\infty)_w\\
+                \Tilde{\Omega} \subseteq (0,\infty)_r\times[0, 2\pi)_\theta\times[0,\pi]_\varphi\times(-\infty,\infty)_w
+            \end{cases}
+        \end{equation*}
+        \begin{align*}
+            J&=
+            \det\begin{vmatrix}
+                \frac{\partial x}{\partial r} & \frac{\partial x}{\partial \theta} & \frac{\partial x}{\partial \varphi} & \frac{\partial x}{\partial w}\\
+                \frac{\partial y}{\partial r} & \frac{\partial y}{\partial \theta} & \frac{\partial y}{\partial \varphi} & \frac{\partial y}{\partial w}\\
+                \frac{\partial z}{\partial r} & \frac{\partial z}{\partial \theta} & \frac{\partial z}{\partial \varphi} & \frac{\partial z}{\partial w}\\
+                \frac{\partial w}{\partial r} & \frac{\partial w}{\partial \theta} & \frac{\partial w}{\partial \varphi} & \frac{\partial w}{\partial w}
+            \end{vmatrix}\\
+            &=\det\begin{vmatrix}
+                \cos\theta\sin\varphi & -r\sin\theta\sin\varphi & r\cos\theta\cos\varphi & 0\\
+                \sin\theta\sin\varphi & r\cos\theta\sin\varphi & r\sin\theta\cos\varphi & 0\\
+                \cos\varphi & 0 & -r\sin\varphi & 0\\
+                0 & 0 & 0 & 1
+            \end{vmatrix}\\
+            &=r^2\sin\varphi
+        \end{align*}
+        We have just shown that $\left|\det(D_u\Vec{T})\right|$ is nonzero, implying that the inverse functions, $g(x)=u$ and $g^{-1}(u)=x$ exist. We make the assumption that $f(r,\theta,\varphi,w)$ is differentiable, given the parameterization of $\Vec{T}$ differentiable. Another assumption we are making is the bijectivity of $\Vec{T}$: We have already proven in class that the transformation from 3D cartesian coordinates to spherical coordinates is bijective. And since the transformation from $w$ to $w$ is also bijective yet independant of the other three basis vectors, $\Vec{T}$ must be bijective. Therefore, we recognize that $\Vec{T}$ is a differomorphism.
+        \begin{equation*}
+            \boxed{\implies\int_\Omega f(\Vec{x}){\rm d\Omega}=\int_{\tilde{\Omega}}f(r\cos\theta\sin\varphi,r\sin\theta\sin\varphi,r\cos\varphi,w)r^2\sin\varphi \;{\rm dr\; d\theta \;d\varphi \;dw}}
+        \end{equation*}
+        \item 
+        \begin{align*}
+            V&=\int_0^h\int_0^\pi\int_0^{2\pi}\int_0^Rr^2\sin\varphi\;{\rm dr\; d\theta \;d\varphi \;dw}\\
+            &=\frac{R^3}{3}\int_0^h\int_0^\pi\int_0^{2\pi}\sin\varphi\;{\rm d\theta \;d\varphi \;dw}\\
+            &=\frac{2\pi R^3}{3}\int_0^h\int_0^\pi\sin\varphi\;{\rm d\varphi \;dw}\\
+            &=\frac{4\pi R^3}{3}\int_0^h\;{\rm dw}\\
+            &=\boxed{\frac{4\pi h R^3}{3}}
+        \end{align*}
+    \end{enumerate}
+    \newpage
+    \item \textbf{Computational Fluid Dynamics}
+    \begin{enumerate}
+        \item 
+        \vspace{-10pt}
+        \begin{align*}
+            f(x_0+h_x, y_0+h_y) &\approx f(x_0, y_0) + h_x \frac{\partial f}{\partial x}\bigg|_{(x_0, y_0)} + h_y \frac{\partial f}{\partial y}\bigg|_{(x_0, y_0)} \\
+            &+ \frac{h_x^2}{2} \frac{\partial^2 f}{\partial x^2}\bigg|_{(x_0, y_0)} + h_x h_y \frac{\partial^2 f}{\partial x \partial y}\bigg|_{(x_0, y_0)} + \frac{h_y^2}{2} \frac{\partial^2 f}{\partial y^2}\bigg|_{(x_0, y_0)} \\
+            &+ \frac{h_x^3}{6} \frac{\partial^3 f}{\partial x^3}\bigg|_{(x_0, y_0)} + \frac{h_x^2 h_y}{2} \frac{\partial^3 f}{\partial x^2 \partial y}\bigg|_{(x_0, y_0)} + h_x h_y^2 \frac{\partial^3 f}{\partial x \partial y^2}\bigg|_{(x_0, y_0)}\\
+            &+ \frac{h_y^3}{6} \frac{\partial^3 f}{\partial y^3}\bigg|_{(x_0, y_0)} 
+        \end{align*}
+        \item 
+        \vspace{-10pt}
+        \begin{align*}
+            f_1&=f(x_0+h,y_0)\\
+            &=f(x_0,y_0)+h\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}+\frac{h^2}{2}\frac{\partial^2f}{\partial x^2}\bigg|_{(x_0,y_0)}+...\\
+            &=f_0+h\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}+\frac{h^2}{2}\frac{\partial^2f}{\partial x^2}\bigg|_{(x_0,y_0)}+...\\
+            f_1-f_0&=h\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}+\frac{h^2}{2}\frac{\partial^2f}{\partial x^2}\bigg|_{(x_0,y_0)}+...\\
+            \frac{f_1-f_0}{h}&=\boxed{\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}+\frac{h}{2}\frac{\partial^2f}{\partial x^2}\bigg|_{(x_0,y_0)}+...}
+        \end{align*}
+        \begin{align*}
+            f_{-1}&=f(x_0-h,y_0)\\
+            &=f(x_0,y_0)-h\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}+\frac{h^2}{2}\frac{\partial^2 f}{\partial x^2}\bigg|_{(x_0,y_0)}-\frac{h^3}{6}\frac{\partial^3 f}{\partial x^3}\bigg|_{(x_0,y_0)}+...\\
+            f_{-1}-f_1&=-2h\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}-\frac{h^3}{3}\frac{\partial^3 f}{\partial x^3}\bigg|_{(x_0,y_0)}+...\\
+            \frac{f_{1}-f_{-1}}{2h}&=\boxed{\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}+\frac{h^2}{6}\frac{\partial^3 f}{\partial x^3}\bigg|_{(x_0,y_0)}+...}
+        \end{align*}
+        \newpage
+        \item The following assumptions are implicit to the claim:
+        \begin{enumerate}
+            \item We are assuming $f(x,y)$ is infinitely differentiable which may not always be the case.
+            \item Even if the $f(x.y)$ is infinitely differentiable, the derivatives may not be smooth which will cause the taylor series to diverge.
+            \item Taylor's Remainder Theorem may not hold for some functions (i.e. there exist discontinuities, cusps etc.) hence the assumption that the error term approaches zero faster than any other power of $h$ is not generally true.
+            \item The accuracy also depends on where the function is approximated at. Taylor series provides a local approximation around the point of expansion and the accuracy fades as you move away from that point.
+        \end{enumerate}
+        \newpage
+        \item
+        Using the taylor series we derived earlier:
+        \begin{align*}
+            &\frac{(f_{1,0}-f_{-1,0})(f_{0,1}-f_{0,-1})}{4h_xh_y}\\ 
+            &= \left[\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}+\frac{h_x^2}{6}\frac{\partial^3f}{\partial x^3}\bigg|_{(x_0,y_0)}+...\right]\cdot\left[\frac{\partial f}{\partial y}\bigg|_{(x_0,y_0)}+\frac{h_y^2}{6}\frac{\partial^3f}{\partial y^3}\bigg|_{(x_0,y_0)}+...\right]\\
+            &=\frac{\partial f}{\partial x}\frac{\partial f}{\partial y}\bigg|_{(x_0,y_0)}+\frac{h_x^2}{6}\frac{\partial^3f}{\partial x^3}\frac{\partial f}{\partial y}\bigg|_{(x_0,y_0)}+\frac{h_y^2}{6}\frac{\partial^3f}{\partial y^3}\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}+\frac{h_x^2h_y^2}{36}\frac{\partial^3f}{\partial x^3}\frac{\partial^3f}{\partial y^3}\bigg|_{(x_0,y_0)}+...\\
+            &=f_{0,0}\cdot\frac{\partial^2f}{\partial x\partial y}\bigg|_{(x_0,y_0)}+\frac{h_x^2}{6}\frac{\partial^3f}{\partial x^3}\frac{\partial f}{\partial y}\bigg|_{(x_0,y_0)}+\frac{h_y^2}{6}\frac{\partial^3f}{\partial y^3}\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}+\frac{h_x^2h_y^2}{36}\frac{\partial^3f}{\partial x^3}\frac{\partial^3f}{\partial y^3}\bigg|_{(x_0,y_0)}+...
+        \end{align*}
+        Rearranging,
+        \begin{align*}
+            \implies \frac{\partial^2f}{\partial x\partial y}\bigg|_{(x_0,y_0)}&\approx \boxed{\frac{(f_{1,0}-f_{-1,0})(f_{0,1}-f_{0,-1})}{4f_{0,0}h_xh_y} + {\rm er}}\\
+            \text{where }{\rm er}&=-\frac{h_x^2}{6f_{0,0}}\frac{\partial^3f}{\partial x^3}\frac{\partial f}{\partial y}\bigg|_{(x_0,y_0)}-\frac{h_y^2}{6f_{0,0}}\frac{\partial^3f}{\partial y^3}\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}-\frac{h_x^2h_y^2}{36f_{0,0}}\frac{\partial^3f}{\partial x^3}\frac{\partial^3f}{\partial y^3}\bigg|_{(x_0,y_0)}-...
+        \end{align*}
+        Since $f$ is separable, we can can use the following to make simplifications:
+        \begin{align*}
+            \frac{\partial^2f}{\partial x\partial y}&=\frac{\partial\phi(x)}{\partial x}\frac{\partial\psi(y)}{\partial x}
+        \end{align*}
+        Using the results we derived in part (b):
+        \begin{align*}
+            \frac{\partial\phi(x)}{\partial x}\bigg|_{(x_0,y_0)}&\approx\frac{\phi_{1,0}-\phi_{-1,0}}{2h_x}\\
+            \text{and }\frac{\partial\psi(x)}{\partial x}\bigg|_{(x_0,y_0)}&\approx\frac{\psi_{1,0}-\psi_{-1,0}}{2h_y}\\
+            \implies \frac{\partial^2f}{\partial x\partial y}\bigg|_{(x_0,y_0)}&\approx\boxed{\frac{(\phi_{1,0}-\phi_{-1,0})(\psi_{0,1}-\psi_{0,-1})}{4h_xh_y} + {\rm er}}\\
+            \text{where } {\rm er}&=-\frac{hy^2}{6}\frac{\partial^3\psi}{\partial y^3}\frac{\partial\phi}{\partial x}\bigg|_{(x_0,y_0)}-\frac{hx^2}{6}\frac{\partial^3\phi}{\partial x^3}\frac{\partial\psi}{\partial y}\bigg|_{(x_0,y_0)}-\frac{hx^2h_y^2}{36}\frac{\partial^3\phi}{\partial x^3}\frac{\partial^3\psi}{\partial^3 y}\bigg|_{(x_0,y_0)}-...
+        \end{align*}
+        % \begin{equation*}
+        %     \text{We know that }\phi_{1,0}=\frac{f_{1,0}}{f_{0,0}},\;\phi_{-1,0}=\frac{f_{-1,0}}{f_{0,0}},\;\psi_{0,1}=\frac{f_{0,1}}{f_{0,0}},\;\psi_{0,-1}=\frac{f_{0,-1}}{f_{0,0}}
+        % \end{equation*}
+        Now we can compare the error terms.
+        \begin{equation*}
+            \frac{\partial^3 f}{\partial x^3}=\psi(y)\frac{\partial^3\phi}{\partial x^3},\;\frac{\partial^3 f}{\partial x^3}=\phi(y)\frac{\partial^3\psi}{\partial y^3}
+        \end{equation*}
+        And so the error term 
+        \begin{align*}
+            -&\frac{h_x^2}{6f_{0,0}}\frac{\partial^3f}{\partial x^3}\frac{\partial f}{\partial y}\bigg|_{(x_0,y_0)}-\frac{h_y^2}{6f_{0,0}}\frac{\partial^3f}{\partial y^3}\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}-\frac{h_x^2h_y^2}{36f_{0,0}}\frac{\partial^3f}{\partial x^3}\frac{\partial^3f}{\partial y^3}\bigg|_{(x_0,y_0)}-...\\
+            &=-\frac{h_x^2}{6\phi(x)\psi(y)}\psi(y)\frac{\partial^3f}{\partial x^3}\phi(x)\frac{\partial f}{\partial y}\bigg|_{(x_0,y_0)}-\frac{h_y^2}{6f\phi(x)\psi(y)}\phi(x)\frac{\partial^3f}{\partial y^3}\psi(y)\frac{\partial f}{\partial x}\bigg|_{(x_0,y_0)}-...\\
+            &=-\frac{hy^2}{6}\frac{\partial^3\psi}{\partial y^3}\frac{\partial\phi}{\partial x}\bigg|_{(x_0,y_0)}-\frac{hx^2}{6}\frac{\partial^3\phi}{\partial x^3}\frac{\partial\psi}{\partial y}\bigg|_{(x_0,y_0)}-\frac{hx^2h_y^2}{36}\frac{\partial^3\phi}{\partial x^3}\frac{\partial^3\psi}{\partial^3 y}\bigg|_{(x_0,y_0)}-...
+        \end{align*}
+        And hence we can conclude that the two error terms for the two different representations are equal. In terms of simplification, the fact the $f$ is seperable made the algebra significantly less messy as seen above in the two different ways of deriving the terms.
+        % The simplifications are based on the dependence of the derivatives of the function on the differencing step size $h$. In the calculation of $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$, the first order derivatives are approximated with an error term proportional to $O(h_x^2)$ and $O(h_y^2)$ for the x and y directions respectively. The cross derivative $\frac{\partial^2 f}{\partial x \partial y}$ is approximated using the approximated first order derivatives and has error term which are products of these terms and thus proportional to $O(h_x^3, h_y^3)$. 
+
+        % We made the approximation $\frac{\partial^2f}{\partial x\partial y}\approx \frac{(f_{1,0}-f_{-1,0})(f_{0,1}-f_{0,-1})}{4f_{0,0}h_xh_y}$, because we assumed that $f$ is the product of some function of $x$ times some function of $y$, hence we can separate $\frac{\partial^2f}{\partial x\partial y}$ into the product of two first order partial derivatives. 
+        
+        % The error term $\rm{er}$ is a result of the truncation in the Taylor series expansion and it represents the difference between the exact derivative and the approximated derivative. 
+        
+        % The leading contributors to the error term $\rm{er}$ are:
+        % $$\rm{er} = O\left(\frac{h_x^2}{4}\frac{\partial^3\phi}{\partial x^3}\right)\frac{\partial\psi}{\partial y} + \phi\left(\frac{h_y^2}{4}\frac{\partial^3\psi}{\partial y^3}\right)$$
+        
+        % Here, $\phi$ and $\psi$ are the functions in $x$ and $y$ that combine to give $f$ respectively. The first term represents the effect of changing $x$ on $f$ while the second term represents the effect of changing $y$ on $f$. The error term takes into account the variations in both directions.
+        
+        % Hence the error terms are different because the spatial scales $h_x$ and $h_y$ generally have different magnitudes. If $h_x=h_y$, then yes, the error term would be the same. Otherwise, the errors are generally different.
+    \end{enumerate}
+\end{enumerate}
+\printbibliography
+\end{document}
